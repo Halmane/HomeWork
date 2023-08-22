@@ -6,7 +6,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 List<string>  FillListOfNumber(int count)
 {
-    List<string> contacts = new List<string>();
+    var contacts = new List<string>();
     for(int i = 0; i < count; i++)
     {
         contacts.Add(FillNumber());
@@ -16,16 +16,13 @@ List<string>  FillListOfNumber(int count)
 
 List<string> SortListOfNumber(List<string> contacts)
 {
-    var sortContacts =
-            from contact in contacts
-            where contact.Length == 12 && contact.StartsWith("+7")
-            select contact;
+    var sortContacts = contacts.Where(contact => contact.Length == 12 && contact.StartsWith("+7")).ToList();
     return sortContacts.ToList();
 }
 
-SortedDictionary<string,string> FillDictionary(HashSet<string> contact)
+Dictionary<string,string> FillDictionary(HashSet<string> contact)
 {
-    SortedDictionary<string, string> contacts = new SortedDictionary<string, string>();
+    var contacts = new Dictionary<string, string>();
     foreach (string i in contact)
     {
         contacts.Add(i,FillName(i));
@@ -34,7 +31,7 @@ SortedDictionary<string,string> FillDictionary(HashSet<string> contact)
 }
 string FillNumber()
 {
-    string number = string.Empty;
+    var number = string.Empty;
     Console.WriteLine("Enter the number:");
     number = Console.ReadLine();
     
@@ -42,8 +39,8 @@ string FillNumber()
 }
 string FillName(string number)
 {
-    string name = string.Empty;
-    TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+    var name = string.Empty;
+    var textInfo = new CultureInfo("en-US", false).TextInfo;
     Console.WriteLine($"Enter the name for {number}:");
     name = textInfo.ToTitleCase(Console.ReadLine());
     return name;
@@ -55,14 +52,14 @@ do
     count = int.Parse(Console.ReadLine());
 } while (count <= 0);
 
-HashSet<string> contact = SortListOfNumber(FillListOfNumber(count)).ToHashSet();
+var contact = SortListOfNumber(FillListOfNumber(count)).ToHashSet();
 foreach (string i in contact)
 {
     Console.WriteLine(i);
 }
 
 Console.WriteLine(contact.Sum(c => c.Length));
-SortedDictionary<string, string> contacts = FillDictionary(contact);
+var contacts = FillDictionary(contact);
 var sotrContacts = contacts.OrderBy(x => x.Value);
 foreach (var с in sotrContacts)
 {
