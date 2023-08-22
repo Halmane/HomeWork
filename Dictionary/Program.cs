@@ -16,8 +16,7 @@ List<string>  FillListOfNumber(int count)
 
 List<string> SortListOfNumber(List<string> contacts)
 {
-    var sortContacts = contacts.Where(contact => contact.Length == 12 && contact.StartsWith("+7")).ToList();
-    return sortContacts.ToList();
+    return contacts.Where(contact => contact.Length == 12 && contact.StartsWith("+7")).ToList();
 }
 
 Dictionary<string,string> FillDictionary(HashSet<string> contact)
