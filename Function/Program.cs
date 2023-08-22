@@ -5,9 +5,8 @@
 
 static string Shift(string s, Func<char, char> expression)
 {
-    string newString = "";
-    foreach (char c in s) newString += expression(c);
-    return newString;
+    s = String.Join(string.Empty, s.Select(x => expression(x)));
+    return s;
 }
 static string DecryptFirstHalf(string firstHalf)
 {
