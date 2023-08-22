@@ -13,10 +13,14 @@ namespace variables
             string firstName = "Vladimir";
             string lastName = "Durmanov";
             double height = 170;
-            height = 100;
             float weight = 79;
             bool isChild = (height < 150 || weight < 40);
-            string info = "Name: " + firstName + "\nLast name: " + lastName + "\nHeight: " + height + "\nWeight: " + weight + "\nIs child: " + isChild;
+            string info = $"Name: {firstName} + \n Last name:  {lastName} \nHeight: {height} \nWeight: {weight} \nIs child: {isChild}";
+            Console.WriteLine(info);
+
+            height = 100;
+            isChild = (height < 150 || weight < 40);
+            info = $"Name: {firstName} + \n Last name:  {lastName} \nHeight: {height} \nWeight: {weight} \nIs child: {isChild}";
             Console.WriteLine(info);
             Console.ReadLine();
         }
