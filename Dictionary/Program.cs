@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Numerics;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using System.Globalization;
+
 
 List<string>  FillListOfNumber(int count)
 {
@@ -59,8 +56,13 @@ foreach (string i in contact)
 
 Console.WriteLine(contact.Sum(c => c.Length));
 var contacts = FillDictionary(contact);
-var sotrContacts = contacts.OrderBy(x => x.Value);
-foreach (var с in sotrContacts)
+var sortContacts = contacts.OrderBy(x => x.Value);
+foreach (var с in sortContacts)
+{
+    Console.WriteLine($"Contact: {с.Value}  Number: {с.Key}");
+}
+sortContacts = contacts.OrderBy(x => x.Key);
+foreach (var с in sortContacts)
 {
     Console.WriteLine($"Contact: {с.Value}  Number: {с.Key}");
 }
