@@ -5,9 +5,9 @@
         public string Name { get;}
         public string Info { get;}
         public int ChannelNumber { get;}
-        public Channel(int stream, string name)
+        public Channel(int сhannelNumber, string name)
         {
-            ChannelNumber = stream;
+            ChannelNumber = сhannelNumber;
             Name = name;
             Info = name;
         }
