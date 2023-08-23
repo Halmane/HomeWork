@@ -20,5 +20,5 @@ for (int i = 0; i < 10; i++)
     tv[i].NextChannel();
     tv[i].NextChannel();
     tv[i].ChangeVolume(15);
-    tv[i].ChangePlaingChannel(15);
+    tv[i].ChangePlayingChannel(15);
 }
