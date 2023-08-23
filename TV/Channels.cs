@@ -1,30 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+using System;
+using System.Threading.Channels;
 
 namespace TVshow
 {
-    static class Channels
+    public static class Channels
     {
-        private static List<Channel> _сhannels = new List<Channel>(){ new Channel(1, "Музтв"),
-                                                                      new Channel(2, "Нтв"),
-                                                                      new Channel(3, "МатчТВ"),
-                                                                      new Channel(4, "Дисней"),
-                                                                      new Channel(5, "Первый"),
-                                                                      new Channel(6, "СТС"),
-                                                                      new Channel(7, "ТНТ"),
-                                                                      new Channel(8, "Nickelodeon")};
+        private static List<Channel> _сhannels = new List<Channel>()
+        {
+            new(1, "Музтв"),
+            new(2, "Нтв"),
+            new(3, "МатчТВ"),
+            new(4, "Дисней"),
+            new(5, "Первый"),
+            new(6, "СТС"),
+            new(7, "ТНТ"),
+            new(8, "Nickelodeon")
+        };
 
         public static List<Channel> GetRandomChannels(int count)
         {
-            var randomChannelsList = new HashSet<Channel>();
-            for (int i = 0; i < count; i++)
-            {
-                randomChannelsList.Add(_сhannels[Random.Shared.Next(_сhannels.Count - 1)]);
-            }
-            return randomChannelsList.ToList<Channel>();
+            if (count > _сhannels.Count - 1) count = _сhannels.Count - 1;
+            if (count <= 0) count = 1;
+            return _сhannels.OrderBy(x => Random.Shared.Next()).Take(count).ToList();
         }
     }
 }
