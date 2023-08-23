@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TVshow
+﻿namespace TVshow
 {
-    internal class Channel
+    public class Channel
     {
-        public string Name;
-        public string Info;
-        public int Stream;
+        public string Name { get;}
+        public string Info { get;}
+        public int ChannelNumber { get;}
         public Channel(int stream, string name)
         {
-            Stream = stream;
+            ChannelNumber = stream;
             Name = name;
             Info = name;
         }

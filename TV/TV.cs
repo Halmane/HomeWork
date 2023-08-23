@@ -70,7 +70,7 @@ namespace TVshow
             if (_isOn == false) TVOn();
             if (newChannel <= _channels.Count && newChannel > 0) _playingChannel = newChannel;
             else _playingChannel = _channels.Count-1;
-            Console.WriteLine($"Channel:{_channels[_playingChannel].Stream}-{_channels[_playingChannel].Name}");
+            Console.WriteLine($"Channel:{_channels[_playingChannel].ChannelNumber}-{_channels[_playingChannel].Name}");
         }
 
         public void NextChannel()
@@ -78,7 +78,7 @@ namespace TVshow
             if (_isOn == false) TVOn();
             _playingChannel++;
             if (_playingChannel > _channels.Count) _playingChannel = 1;
-            Console.WriteLine($"Channel:{_channels[_playingChannel].Stream}-{_channels[_playingChannel].Name}");
+            Console.WriteLine($"Channel:{_channels[_playingChannel].ChannelNumber}-{_channels[_playingChannel].Name}");
         }
 
         public void LastChannel()
@@ -86,7 +86,7 @@ namespace TVshow
             if (_isOn == false) TVOn();
             _playingChannel--;
             if (_playingChannel < 1) _playingChannel = _channels.Count;
-            Console.WriteLine($"Channel:{_channels[_playingChannel].Stream}-{_channels[_playingChannel].Name}");
+            Console.WriteLine($"Channel:{_channels[_playingChannel].ChannelNumber}-{_channels[_playingChannel].Name}");
         }
 
         public void ListOfChannels()
@@ -94,7 +94,7 @@ namespace TVshow
             if (_isOn == false) TVOn();
             for ( int i = 0; i < _channels.Count; i++ )
             {
-                Console.WriteLine($"Channel:{_channels[i].Stream}-{_channels[i].Name}");
+                Console.WriteLine($"Channel:{_channels[i].ChannelNumber}-{_channels[i].Name}");
             }
         }
 
@@ -103,7 +103,7 @@ namespace TVshow
             Console.WriteLine($"Brand: {Brand} \nModel:{Model} \nDiagonal:{Diagonal}");
             Console.WriteLine(_isOn ? "On" : "Off");
             ListOfChannels();
-            Console.WriteLine($"Now playing \nChannel:{_channels[_playingChannel].Stream}-{_channels[_playingChannel].Name}");
+            Console.WriteLine($"Now playing \nChannel:{_channels[_playingChannel].ChannelNumber}-{_channels[_playingChannel].Name}");
             Console.WriteLine($"Volume:{_volume}/{MaxVolume}");
         }
     }
