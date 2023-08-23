@@ -2,20 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace TVshow
 {
     internal class TV
     {
+        private bool _isOn;
+        private List<Channel> Channels;
+        private int _playingChannel;
+        private int _volume;
         public string Brand { get; }
         public string Model { get; }
         public double Diagonal { get; }
-        private bool _isOn;
-        private List<string> Channels;
-        private int _playingChannel;
-        private int _volume;
-        int MaxVolume { get; }
+        public int MaxVolume { get; }
+        public static Random Shared { get; }
+
+
+        private void FillChannels(int count)
+        {
+            
+            Channels = Channel.GetRandomChannels(count);
+        }
 
         public TV()
         {
@@ -25,7 +34,7 @@ namespace TVshow
             _isOn = false;
             MaxVolume = 10;
             _volume = 0;
-            FillChannels(51);
+            FillChannels(50);
             _playingChannel = 1;
         }
         public TV(string brand, string model, double diagonal, int channels) 
@@ -36,26 +45,11 @@ namespace TVshow
             _isOn = false;
             MaxVolume = 10;
             _volume = 0;
-            FillChannels(channels);
+            FillChannels(10);
             _playingChannel = 1;
         }
 
-        private void FillChannels(int count)
-        {
-            Channels = new List<string>();
-            for (int i = 1; i <= count; i++) 
-            {
-                Channels.Add(GetRandomChannels());
-            }
-        }
-
-        private string GetRandomChannels()
-        {
-            Random random = new Random();
-
-            List<string> channel = new List<string> { "МузТВ", "Нтв", "МатчТВ", "Дисней", "Первый", "СТС", "ТНТ", "Nickelodeon" };
-            return channel[random.Next(channel.Count)];
-        }
+        
 
         public void TVOn()
         {
@@ -77,8 +71,8 @@ namespace TVshow
         {
             if (_isOn == false) TVOn();
             if (newChannel <= Channels.Count && newChannel > 0) _playingChannel = newChannel;
-            else _playingChannel = Channels.Count;
-            Console.WriteLine($"Channel:{_playingChannel}-{Channels[_playingChannel]}");
+            else _playingChannel = Channels.Count-1;
+            Console.WriteLine($"Channel:{Channels[_playingChannel].Stream}-{Channels[_playingChannel].Name}");
         }
 
         public void NextChannel()
@@ -86,7 +80,7 @@ namespace TVshow
             if (_isOn == false) TVOn();
             _playingChannel++;
             if (_playingChannel > Channels.Count) _playingChannel = 1;
-            Console.WriteLine($"Channel:{_playingChannel}-{Channels[_playingChannel]}");
+            Console.WriteLine($"Channel:{Channels[_playingChannel].Stream}-{Channels[_playingChannel].Name}");
         }
 
         public void LastChannel()
@@ -94,15 +88,15 @@ namespace TVshow
             if (_isOn == false) TVOn();
             _playingChannel--;
             if (_playingChannel < 1) _playingChannel = Channels.Count;
-            Console.WriteLine($"Channel:{_playingChannel}-{Channels[_playingChannel]}");
+            Console.WriteLine($"Channel:{Channels[_playingChannel].Stream}-{Channels[_playingChannel].Name}");
         }
 
         public void ListOfChannels()
         {
             if (_isOn == false) TVOn();
-            for ( int i = 1; i < Channels.Count; i++ )
+            for ( int i = 0; i < Channels.Count; i++ )
             {
-                Console.WriteLine($"Channel:{i}-{Channels[i]}");
+                Console.WriteLine($"Channel:{Channels[i].Stream}-{Channels[i].Name}");
             }
         }
 
@@ -111,7 +105,7 @@ namespace TVshow
             Console.WriteLine($"Brand: {Brand} \nModel:{Model} \nDiagonal:{Diagonal}");
             Console.WriteLine(_isOn ? "On" : "Off");
             ListOfChannels();
-            Console.WriteLine($"Now playing \nChannel:{_playingChannel}-{Channels[_playingChannel]}");
+            Console.WriteLine($"Now playing \nChannel:{Channels[_playingChannel].Stream}-{Channels[_playingChannel].Name}");
             Console.WriteLine($"Volume:{_volume}/{MaxVolume}");
         }
     }
