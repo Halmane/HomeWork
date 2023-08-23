@@ -35,7 +35,7 @@
             Diagonal = 20.5;
             _isOn = false;
             Volume = 0;
-            FillChannels(5);
+            FillChannels(6);
             _playingChannel = 0;
         }
 
@@ -70,7 +70,7 @@
                 _playingChannel = newChannel;
             else
                 _playingChannel = _channels.Count - 1;
-            Channel.PrintChannel(_channels[_playingChannel]);
+            _channels[_playingChannel].PrintChannel();
         }
 
         public void NextChannel()
@@ -80,7 +80,7 @@
             _playingChannel++;
             if (_playingChannel >= _channels.Count)
                 _playingChannel = 0;
-            Channel.PrintChannel(_channels[_playingChannel]);
+            _channels[_playingChannel].PrintChannel();
         }
 
         public void LastChannel()
@@ -90,14 +90,14 @@
             _playingChannel--;
             if (_playingChannel < 1)
                 _playingChannel = _channels.Count-1;
-            Channel.PrintChannel(_channels[_playingChannel]);
+            _channels[_playingChannel].PrintChannel();
         }
 
         public void ListOfChannels()
         {
             for (int i = 0; i < _channels.Count; i++)
             {
-                Channel.PrintChannel(_channels[i]);
+                _channels[i].PrintChannel();
             }
         }
 
@@ -106,7 +106,7 @@
             Console.WriteLine($"Brand: {Brand} \nModel:{Model} \nDiagonal:{Diagonal}");
             Console.WriteLine(_isOn ? "On" : "Off");
             ListOfChannels();
-            Channel.PrintChannel(_channels[_playingChannel]);
+            _channels[_playingChannel].PrintChannel();
             Console.WriteLine($"Volume:{Volume}/{MaxVolume}");
         }
     }

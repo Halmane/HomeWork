@@ -13,10 +13,10 @@
             Info = name;
         }
 
-        public static void PrintChannel(Channel channel)
+        public void PrintChannel()
         {
             Console.WriteLine(
-                $"Channel:{channel.ChannelNumber}-{channel.Name}"
+                $"Channel:{ChannelNumber}-{Name}"
             );
         }
     }
