@@ -27,8 +27,8 @@
         {
             int i = Random.Shared.Next(1, 100);
             if (i < 5) _animals.Add(animal.Birth(animal));
-            else if (i >= 5 && i < 35) animal.Sleep();
-            else if (i >= 35 && i < 85) animal.Eat();
+            else if (i < 35) animal.Sleep();
+            else if (i < 85) animal.Eat();
             else animal.Move();
         }
     }
