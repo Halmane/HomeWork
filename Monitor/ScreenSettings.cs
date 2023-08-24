@@ -2,9 +2,14 @@
 
 internal class ScreenSettings
 {
-    private bool IsHorizontally = true;
-    public List<string> ScreenResolution { get; private set; }
-    private string ActualScreenResolution;
+    public bool IsLandspace = true;
+    private string _actualScreenResolution;
+    public int _maxFrameRate { get; private set; }
+    public int Brightness { get; private set; }
+    public int Contrast { get; private set; }
+    private static List<string> Language;
+    public string ActualLanguage { get; private set; }
+    private static List<string> ScreenResolution;
     private int _frameRate;
     public int FrameRate
     {
@@ -19,16 +24,38 @@ internal class ScreenSettings
                 _frameRate = value;
         }
     }
-    public int _maxFrameRate { get; }
-    public int Brightness;
-    public int Contrast;
-    public List<string> Language;
-    public string ActualLanguage;
+
+    public ScreenSettings(int maxFrameRate, int brightness, int contrast)
+    {
+        Language = new List<string>()
+        {
+            "Russian",
+            "English",
+            "Dutch",
+            "Portugues",
+            "French",
+            "German"
+        };
+        ScreenResolution = new List<string>()
+        {
+            "1280x1024",
+            "1366x768",
+            "1600x900",
+            "1920x1080",
+            "3840x1080"
+        };
+        _maxFrameRate = maxFrameRate;
+        Brightness = brightness;
+        Contrast = contrast;
+        FrameRate = maxFrameRate;
+        _actualScreenResolution = ScreenResolution[0];
+        ActualLanguage = Language[0];
+    }
 
     public void RotateScreen()
     {
-        IsHorizontally = !IsHorizontally;
-        Console.WriteLine(IsHorizontally ? "Horizontally" : "Vertically");
+        IsLandspace = !IsLandspace;
+        Console.WriteLine(IsLandspace ? "Landspace" : "Portrait");
     }
 
     public void ChangeScreenREsolution()
@@ -41,8 +68,10 @@ internal class ScreenSettings
         Console.WriteLine(": ");
         do
         {
-            ActualScreenResolution = Console.ReadLine();
-        } while (ActualScreenResolution != ScreenResolution.Find(p => p == ActualScreenResolution));
+            _actualScreenResolution = Console.ReadLine();
+        } while (
+            _actualScreenResolution != ScreenResolution.Find(p => p == _actualScreenResolution)
+        );
     }
 
     public void ChangeFrameRate(int frameRate)
@@ -83,4 +112,6 @@ internal class ScreenSettings
             Contrast = 1;
         Console.WriteLine($"Contrast now: {Contrast}");
     }
+
+    
 }

@@ -1,4 +1,6 @@
-﻿var tv = new TV[10];
+﻿using TVshow;
+
+var tv = new TV[10];
 
 for(int i = 0; i < 10; i++)
 {

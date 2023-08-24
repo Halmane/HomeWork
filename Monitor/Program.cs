@@ -1,2 +1,3 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using Monitor;
+
+var monitor = new Screen("Samsung", "model", 21.5, "LED", true);
