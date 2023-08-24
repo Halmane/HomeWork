@@ -1,6 +1,7 @@
 ﻿using Monitor;
 
 var monitor = new Screen("Samsung", "model", 21.5, "LED", true);
+monitor.ScreenInfo();
 monitor.ScreenSettings.ChangeBrightness(Operation.Plus);
 monitor.ScreenOn();
 monitor.ScreenSettings.ChangeBrightness(Operation.Plus);

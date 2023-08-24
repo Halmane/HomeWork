@@ -11,7 +11,6 @@ internal class ScreenSettings
         "French",
         "German"
     };
-    public string ActualLanguage { get; private set; }
     private static List<string> ScreenResolution = new List<string>()
     {
         "1280x1024",
@@ -20,20 +19,20 @@ internal class ScreenSettings
         "1920x1080",
         "3840x1080"
     };
-    private string _actualScreenResolution;
-    public int _maxFrameRate { get; private set; }
+    public bool IsLandspace { get; private set; }
+    public string ActualScreenResolution { get; private set; }
+    public string ActualLanguage { get; private set; }
+    public int MaxFrameRate { get; private set; }
     public int Brightness { get; private set; }
     public int Contrast { get; private set; }
-
-    public bool IsLandspace = true;
     private int _frameRate;
     public int FrameRate
     {
         get { return _frameRate; }
         private set
         {
-            if (value > _maxFrameRate)
-                _frameRate = _maxFrameRate;
+            if (value > MaxFrameRate)
+                _frameRate = MaxFrameRate;
             else if (value <= 0)
                 _frameRate = 1;
             else
@@ -43,12 +42,13 @@ internal class ScreenSettings
 
     public ScreenSettings(int maxFrameRate, int brightness, int contrast)
     {
-        _maxFrameRate = maxFrameRate;
+        MaxFrameRate = maxFrameRate;
         Brightness = brightness;
         Contrast = contrast;
         FrameRate = maxFrameRate;
-        _actualScreenResolution = ScreenResolution[0];
+        ActualScreenResolution = ScreenResolution[0];
         ActualLanguage = Language[0];
+        IsLandspace = true;
     }
 
     public void RotateScreen()
@@ -67,16 +67,16 @@ internal class ScreenSettings
         Console.WriteLine(": ");
         do
         {
-            _actualScreenResolution = Console.ReadLine();
+            ActualScreenResolution = Console.ReadLine();
         } while (
-            _actualScreenResolution != ScreenResolution.Find(p => p == _actualScreenResolution)
+            ActualScreenResolution != ScreenResolution.Find(p => p == ActualScreenResolution)
         );
     }
 
     public void ChangeFrameRate(int frameRate)
     {
         FrameRate = frameRate;
-        Console.WriteLine($"Frame rate: {FrameRate}/{_maxFrameRate}");
+        Console.WriteLine($"Frame rate: {FrameRate}/{MaxFrameRate}");
     }
 
     public void ChangeLanguage()
@@ -105,7 +105,7 @@ internal class ScreenSettings
 
     public void ChangeContrast(Operation operation)
     {
-        Contrast = operation == Operation.Plus ? Contrast++ : Contrast--;
+        Contrast = operation == Operation.Plus ? ++Contrast : --Contrast;
         if (Contrast > 100)
             Contrast = 100;
         else if (Contrast <= 0)
