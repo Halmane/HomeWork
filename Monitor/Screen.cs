@@ -13,7 +13,7 @@ internal class Screen
 
     public Screen(string brand, string model, double diagonal, string matrix, bool curved)
     {
-        ScreenSettings = new ScreenSettings(120, 50, 50);
+        ScreenSettings = new ScreenSettings(120, 100, 100);
         Connectors = new List<(Connector, int count)>()
         {
             (Connector.HDMI, 1),
@@ -55,6 +55,6 @@ internal class Screen
             $"\nBrightness: {ScreenSettings.Brightness} Contrast: {ScreenSettings.Contrast}" +
             $"\nOrientation: "
         );
-        Console.Write(ScreenSettings.IsLandspace? "Landspace": "Portrait");
+        Console.WriteLine(ScreenSettings.IsLandspace? "Landspace": "Portrait");
     }
 }

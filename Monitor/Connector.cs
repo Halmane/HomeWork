@@ -1,7 +1,7 @@
 ﻿namespace Monitor;
 internal class Connector
 {
-    public string Name;
+    public string Name { get; }
     public Connector(string name)
     {
         Name = name;

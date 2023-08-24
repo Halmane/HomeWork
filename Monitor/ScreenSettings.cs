@@ -2,14 +2,30 @@
 
 internal class ScreenSettings
 {
-    public bool IsLandspace = true;
+    private static List<string> Language = new List<string>()
+    {
+        "Russian",
+        "English",
+        "Dutch",
+        "Portugues",
+        "French",
+        "German"
+    };
+    public string ActualLanguage { get; private set; }
+    private static List<string> ScreenResolution = new List<string>()
+    {
+        "1280x1024",
+        "1366x768",
+        "1600x900",
+        "1920x1080",
+        "3840x1080"
+    };
     private string _actualScreenResolution;
     public int _maxFrameRate { get; private set; }
     public int Brightness { get; private set; }
     public int Contrast { get; private set; }
-    private static List<string> Language;
-    public string ActualLanguage { get; private set; }
-    private static List<string> ScreenResolution;
+
+    public bool IsLandspace = true;
     private int _frameRate;
     public int FrameRate
     {
@@ -27,23 +43,6 @@ internal class ScreenSettings
 
     public ScreenSettings(int maxFrameRate, int brightness, int contrast)
     {
-        Language = new List<string>()
-        {
-            "Russian",
-            "English",
-            "Dutch",
-            "Portugues",
-            "French",
-            "German"
-        };
-        ScreenResolution = new List<string>()
-        {
-            "1280x1024",
-            "1366x768",
-            "1600x900",
-            "1920x1080",
-            "3840x1080"
-        };
         _maxFrameRate = maxFrameRate;
         Brightness = brightness;
         Contrast = contrast;
@@ -58,7 +57,7 @@ internal class ScreenSettings
         Console.WriteLine(IsLandspace ? "Landspace" : "Portrait");
     }
 
-    public void ChangeScreenREsolution()
+    public void ChangeScreenResolution()
     {
         Console.Write("Select the resolution ");
         foreach (var resolution in ScreenResolution)
@@ -77,6 +76,7 @@ internal class ScreenSettings
     public void ChangeFrameRate(int frameRate)
     {
         FrameRate = frameRate;
+        Console.WriteLine($"Frame rate: {FrameRate}/{_maxFrameRate}");
     }
 
     public void ChangeLanguage()
@@ -92,10 +92,10 @@ internal class ScreenSettings
             ActualLanguage = Console.ReadLine();
         } while (ActualLanguage != Language.Find(p => p == ActualLanguage));
     }
-
-    public void ChangeBrightness(char operation)
+    
+    public void ChangeBrightness(Operation operation)
     {
-        Brightness = operation == '+' ? Brightness++ : Brightness--;
+        Brightness = operation == Operation.Plus ? ++Brightness : --Brightness;
         if (Brightness > 100)
             Brightness = 100;
         else if (Brightness <= 0)
@@ -103,15 +103,13 @@ internal class ScreenSettings
         Console.WriteLine($"Brightness now: {Brightness}");
     }
 
-    public void ChangeContrast(char operation)
+    public void ChangeContrast(Operation operation)
     {
-        Contrast = operation == '+' ? Contrast++ : Contrast--;
+        Contrast = operation == Operation.Plus ? Contrast++ : Contrast--;
         if (Contrast > 100)
             Contrast = 100;
         else if (Contrast <= 0)
             Contrast = 1;
         Console.WriteLine($"Contrast now: {Contrast}");
     }
-
-    
 }
