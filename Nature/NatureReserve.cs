@@ -23,7 +23,7 @@
                         j--;
                     }
                 }
-                //.Thread.Sleep(3000);
+                Thread.Sleep(3000);
             }
         }
 
