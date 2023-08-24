@@ -25,22 +25,11 @@
         }
         public void DoRandomAction(Animal animal)
         {
-            int i = Random.Shared.Next(0,3);
-            switch(i)
-            {
-                case 0:
-                    animal.Eat();
-                    break;
-                case 1:
-                    animal.Sleep();
-                    break;
-                case 2:
-                    animal.Move();
-                    break;
-                case 3:
-                    _animals.Add(animal.Birth(animal));
-                    break;
-            }
+            int i = Random.Shared.Next(1, 100);
+            if (i < 5) _animals.Add(animal.Birth(animal));
+            else if (i >= 5 && i < 35) animal.Sleep();
+            else if (i >= 35 && i < 85) animal.Eat();
+            else animal.Move();
         }
     }
 }
