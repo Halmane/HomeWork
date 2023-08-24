@@ -1,90 +1,94 @@
-﻿namespace Nature;
+﻿using System.Xml.Linq;
 
-internal class Animal
+namespace Nature;
+
+public class Animal
 {
-    private static int _energy;
-    private static int _weight;
-    private static int _currentAge;
-    private static int _maximumAge;
-    private static string _name;
-    public static bool IsTooOld
+    public int Energy { get; protected set; }
+    public int Weight { get; protected set; }
+    public int CurrentAge { get; protected set; }
+    public int MaximumAge { get; protected set; }
+    public string Name { get; protected set; }
+    public bool IsTooOld
     {
-        get { return _currentAge >= _maximumAge ? true : false; }
+        get { return CurrentAge >= MaximumAge ? true : false; }
+    }
+
+    private static List<string> _nameForAnimal = new List<string>() { "Bob", "Pop", "Tot", "Gog" };
+
+    public Animal()
+    {
+        Energy = Random.Shared.Next(1, 20);
+        Weight = Random.Shared.Next(1, 20);
+        CurrentAge = Random.Shared.Next(1, 60);
+        MaximumAge = Random.Shared.Next(60, 80);
+        Name = _nameForAnimal[Random.Shared.Next(0, _nameForAnimal.Count - 1)];
     }
 
     public Animal(int energy, int weight, int currentAge, int maximumAge, string name)
     {
-        _energy = energy;
-        _weight = weight;
-        _currentAge = currentAge;
-        _maximumAge = maximumAge;
-        _name = name;
+        Energy = energy;
+        Weight = weight;
+        CurrentAge = currentAge;
+        MaximumAge = maximumAge;
+        Name = name;
     }
 
     public void Info()
     {
         Console.WriteLine(
             $"""
-            Name: {_name}
-            Weight: {_weight}
-            Energy: {_energy}
-            Current age: {_currentAge}
+            Name: {Name}
+            Weight: {Weight}
+            Energy: {Energy}
+            Current age: {CurrentAge}
             """
         );
     }
 
-    public static void Sleep()
+    public void Sleep()
     {
-        _energy += 5;
-        _currentAge += 1;
-        Console.WriteLine($"{_name} is sleeping.");
+        Energy += 5;
+        CurrentAge += 1;
+        Console.WriteLine($"{Name} is sleeping.");
     }
 
-    public static void Eat()
+    public void Eat()
     {
-        _energy += 3;
-        _currentAge += Random.Shared.Next(0, 2);
-        _weight += 1;
-        Console.WriteLine($"{_name} is eating.");
+        Energy += 3;
+        CurrentAge += Random.Shared.Next(0, 2);
+        Weight += 1;
+        Console.WriteLine($"{Name} is eating.");
     }
 
-    public static void Move()
+    public virtual bool Move()
     {
-        _energy -= 5;
-        _currentAge += Random.Shared.Next(0, 2);
-        _weight -= 1;
-        Console.WriteLine($"{_name} is moving.");
+        if (IsTooOld)
+            return false;
+        Energy -= 5;
+        CurrentAge += Random.Shared.Next(0, 2);
+        Weight -= 1;
+        Console.WriteLine($"{Name} is moving.");
+        return true;
     }
 
-    public void Birth(List<Animal> Animals)
+    public virtual Animal Birth(Animal mother)
     {
         var animal = new Animal(
             Random.Shared.Next(1, 10),
             Random.Shared.Next(1, 5),
             1,
-            _maximumAge,
-            _name
+            mother.MaximumAge,
+            mother.Name
         );
-        Animals.Add(animal);
         Console.WriteLine("A new animal was born!");
         animal.Info();
-    }
-
-    public static void TryAction(Action action)
-    {
-        if (IsTooOld)
-            return;
-        if (action == Sleep)
-            action();
-        else if (action == Eat)
-            action();
-        else if (action == Move && _energy > 6 && _weight > 2)
-            action();
+        return animal;
     }
 
     private void TryIncrementAge()
     {
         if (Random.Shared.Next(0, 100) <= 10)
-            _currentAge++;
+            CurrentAge++;
     }
 }

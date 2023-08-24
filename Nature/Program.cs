@@ -1,6 +1,21 @@
 ﻿using Nature;
-using System.Xml.Linq;
 
-var animals = new List<Animal>();
-animals.Add(new Animal(10, 10, 64, 83, "Bob"));
-animals[0].Birth(animals);
+var reserve = new NatureReserve(
+    new List<Animal>()
+    {
+        new Animal(),
+        new Animal(),
+        new Bird(),
+        new Bird(),
+        new Bird(),
+        new Bird(),
+        new Bird(),
+        new Fish(),
+        new Fish(),
+        new Fish(),
+        new Dog(),
+        new Dog()
+    }
+);
+
+
