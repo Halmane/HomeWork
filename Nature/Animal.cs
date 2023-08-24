@@ -20,8 +20,8 @@ public class Animal
     {
         Energy = Random.Shared.Next(1, 20);
         Weight = Random.Shared.Next(1, 20);
-        CurrentAge = Random.Shared.Next(1, 60);
-        MaximumAge = Random.Shared.Next(60, 80);
+        CurrentAge = Random.Shared.Next(1, 15);
+        MaximumAge = Random.Shared.Next(15, 20);
         Name = _nameForAnimal[Random.Shared.Next(0, _nameForAnimal.Count - 1)];
     }
 

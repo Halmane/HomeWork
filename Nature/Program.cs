@@ -19,3 +19,6 @@ var reserve = new NatureReserve(
 );
 
 
+reserve.Life(200);
+
+Console.WriteLine(reserve.Animals.Count);

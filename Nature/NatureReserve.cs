@@ -2,34 +2,42 @@
 {
     internal class NatureReserve
     {
-        private List<Animal> _animals;
+        public List<Animal> Animals { get; private set; }
+
         public NatureReserve(List<Animal> animals)
         {
-            _animals = animals;
+            Animals = animals;
         }
 
         public void Life(int N)
         {
-            for(int i = 0;i < N; i++) 
+            for (int i = 0; i < N; i++)
             {
-                for(int j = 0;j < _animals.Count; j++)
+                for (int j = 0; j < Animals.Count; j++)
                 {
-                    DoRandomAction(_animals[j]);
-                    if(_animals[j].IsTooOld)
+                    DoRandomAction(Animals[j]);
+                    if (Animals[j].IsTooOld)
                     {
-                        _animals.Remove(_animals[j]);
+                        Console.WriteLine($"{Animals[j].Name} is dead");
+                        Animals.Remove(Animals[j]);
                         j--;
                     }
                 }
+                //.Thread.Sleep(3000);
             }
         }
+
         public void DoRandomAction(Animal animal)
         {
             int i = Random.Shared.Next(1, 100);
-            if (i < 5) _animals.Add(animal.Birth(animal));
-            else if (i < 35) animal.Sleep();
-            else if (i < 85) animal.Eat();
-            else animal.Move();
+            if (i < 5)
+                Animals.Add(animal.Birth(animal));
+            else if (i < 35)
+                animal.Sleep();
+            else if (i < 85)
+                animal.Eat();
+            else
+                animal.Move();
         }
     }
 }
