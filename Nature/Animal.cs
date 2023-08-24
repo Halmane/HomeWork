@@ -56,7 +56,7 @@ public class Animal
     public void Eat()
     {
         Energy += 3;
-        CurrentAge += Random.Shared.Next(0, 2);
+        TryIncrementAge();
         Weight += 1;
         Console.WriteLine($"{Name} is eating.");
     }
@@ -66,7 +66,7 @@ public class Animal
         if (IsTooOld)
             return false;
         Energy -= 5;
-        CurrentAge += Random.Shared.Next(0, 2);
+        TryIncrementAge();
         Weight -= 1;
         Console.WriteLine($"{Name} is moving.");
         return true;

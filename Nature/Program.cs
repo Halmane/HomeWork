@@ -14,7 +14,14 @@ var reserve = new NatureReserve(
         new Fish(),
         new Fish(),
         new Dog(),
-        new Dog()
+        new Dog(),
+        new Cat(),
+        new Cat(),
+        new Cat(),
+        new Cat(),
+        new Cat(),
+        new Cat(),
+        new Cat(),
     }
 );
 
