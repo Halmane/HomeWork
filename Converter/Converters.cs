@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Converter;
+﻿namespace Converter;
 
 public static class Converters
 {
