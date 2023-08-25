@@ -14,12 +14,11 @@ public class Converters
         }
         Console.WriteLine("Код не найден, введите курс:");
         var newConverter = Console.ReadLine();
-        double course = 0;
-        while (double.TryParse(newConverter, out course) && course <= 0)
+        while (!double.TryParse(newConverter, out _) || double.Parse(newConverter) <= 0)
         {
             Console.WriteLine("Курс не верный,введите заново:");
             newConverter = Console.ReadLine();
         }
-        Console.WriteLine($"{value} рублей = {value / course} {code}");
+        Console.WriteLine($"{value} рублей = {value / double.Parse(newConverter)} {code}");
     }
 }
