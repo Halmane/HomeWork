@@ -1,13 +1,13 @@
 ﻿using Converter;
 using System;
 
-var converter = new Converters();
-
-convert(converter);
-convert(converter);
 
 
-void convert(Converters converter)
+Convert();
+Convert();
+
+
+void Convert()
 {
     Console.WriteLine("Введите код валюты:");
     string code = Console.ReadLine();
@@ -18,5 +18,17 @@ void convert(Converters converter)
         Console.WriteLine("Неверная сумма денег, попробуйте снова:");
         value = Console.ReadLine();
     }
-    converter.Get(code, double.Parse(value));
+    if(Converters.Get(code) != null)
+    {
+        Converters.Get(code).ConvertRub(double.Parse(value));
+        return;
+    }
+    Console.WriteLine("Код не найден, введите курс:");
+    var newConverter = Console.ReadLine();
+    while (!double.TryParse(newConverter, out _) || double.Parse(newConverter) <= 0)
+    {
+        Console.WriteLine("Курс не верный,введите заново:");
+        newConverter = Console.ReadLine();
+    }
+    Console.WriteLine($"{value} рублей = {double.Parse(value) / double.Parse(newConverter)} {code}");
 }
