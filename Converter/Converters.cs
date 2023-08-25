@@ -1,6 +1,6 @@
 ﻿namespace Converter;
 
-internal class Converters
+public class Converters
 {
     private List<CurrencyConverter> _converters = new() {new EURConverter(),new USDConverter() };
 
