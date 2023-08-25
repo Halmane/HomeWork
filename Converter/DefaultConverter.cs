@@ -8,7 +8,7 @@ public class DefaultConverter : ICurrencyConverter
         CurrencyCode = code;
     }
 
-    public void ConvertRub(double value)
+    public double ConvertRub(double value)
     {
         if(_exchangeRate<=0)
         {
@@ -22,5 +22,6 @@ public class DefaultConverter : ICurrencyConverter
             _exchangeRate = double.Parse(newConverter);
         }
         Console.WriteLine($"{value} рублей = {value / _exchangeRate} {CurrencyCode}");
+        return value / _exchangeRate;
     }
 }

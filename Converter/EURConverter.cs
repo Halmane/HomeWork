@@ -7,8 +7,9 @@ public class EURConverter : ICurrencyConverter
         CurrencyCode = "EUR";
     }
 
-    public void ConvertRub(double value)
+    public double ConvertRub(double value)
     {
         Console.WriteLine($"{value} рублей = {value / 102.4} {CurrencyCode}");
+        return value / 102.4;
     }
 }

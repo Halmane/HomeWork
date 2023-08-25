@@ -8,8 +8,9 @@ public class USDConverter : ICurrencyConverter
         CurrencyCode = "USD";
     }
 
-    public void ConvertRub(double value)
+    public double ConvertRub(double value)
     {
-        Console.WriteLine($"{value} рублей = {value / 94,4} {CurrencyCode}");
+        Console.WriteLine($"{value} рублей = {value / 94.4} {CurrencyCode}");
+        return value / 94.4;
     }
 }

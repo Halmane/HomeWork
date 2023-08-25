@@ -3,5 +3,5 @@
 public interface ICurrencyConverter
 {
     string CurrencyCode { get; }
-    void ConvertRub(double value);
+    double ConvertRub(double value);
 }
