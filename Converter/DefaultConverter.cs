@@ -8,7 +8,7 @@ namespace Converter
 {
     internal class DefaultConverter : ICurrencyConverter
     {
-        public string CurrencyCode { get; private set; }
+        public string CurrencyCode { get;}
         public DefaultConverter(string code)
         {
             CurrencyCode = code;

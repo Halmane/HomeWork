@@ -2,7 +2,7 @@
 
 public class USDConverter : ICurrencyConverter
 {
-    public string CurrencyCode { get; private set; }
+    public string CurrencyCode { get;}
     public USDConverter()
     {
         CurrencyCode = "USD";
