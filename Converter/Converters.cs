@@ -14,6 +14,6 @@ public static class Converters
             return finder;
         }
         
-        return null;
+        return new DefaultConverter(code);
     }
 }

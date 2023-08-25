@@ -18,17 +18,5 @@ void Convert()
         Console.WriteLine("Неверная сумма денег, попробуйте снова:");
         value = Console.ReadLine();
     }
-    if(Converters.Get(code) != null)
-    {
-        Converters.Get(code).ConvertRub(double.Parse(value));
-        return;
-    }
-    Console.WriteLine("Код не найден, введите курс:");
-    var newConverter = Console.ReadLine();
-    while (!double.TryParse(newConverter, out _) || double.Parse(newConverter) <= 0)
-    {
-        Console.WriteLine("Курс не верный,введите заново:");
-        newConverter = Console.ReadLine();
-    }
-    Console.WriteLine($"{value} рублей = {double.Parse(value) / double.Parse(newConverter)} {code}");
+    Converters.Get(code).ConvertRub(double.Parse(value));
 }
