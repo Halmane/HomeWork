@@ -1,19 +1,19 @@
 ﻿namespace Card;
 
-internal class CreditBonusCard : CreditCard
+public class CreditBonusCard : CreditCard
 {
-    private double _bonus;
+    private double _bonusBalance;
 
     public override bool Pay(double money)
     {
-        if (_bonus >= money)
+        if (_bonusBalance >= money)
         {
-            _bonus -= money;
+            _bonusBalance -= money;
             return true;
         }
-        else if (_bonus < money && StandartPay(money - _bonus))
+        else if (_bonusBalance < money && StandartPay(money - _bonusBalance))
         {
-            _bonus = 0;
+            _bonusBalance = 0;
             return true;
         }
         return false;
@@ -41,7 +41,7 @@ internal class CreditBonusCard : CreditCard
     }
     private void GetBonus(double money)
     {
-        _bonus += money * 0.0001;
+        _bonusBalance += money * 0.0001;
         Console.WriteLine($"You will receive bonus: {money * 0.0001}");
     }
 
@@ -49,6 +49,6 @@ internal class CreditBonusCard : CreditCard
     {
         BalanceInfo();
         Console.WriteLine($"Credit balance: {_creditBalance}");
-        Console.WriteLine($"Bonus: {_bonus}");
+        Console.WriteLine($"Bonus: {_bonusBalance}");
     }
 }

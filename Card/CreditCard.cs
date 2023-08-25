@@ -1,10 +1,11 @@
 ﻿namespace Card;
 
-internal class CreditCard : BankCard
+public class CreditCard : BankCard
 {
+    protected const double CreditLimit = 10_000;
+
     protected double _balance;
-    protected const double CreditLimit = 10000;
-    protected double _creditBalance = 10000;
+    protected double _creditBalance = CreditLimit;
     public override double Balance
     {
         get { return _balance; }

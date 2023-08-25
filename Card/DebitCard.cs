@@ -1,12 +1,12 @@
 ﻿namespace Card;
 
-internal class DebitCard : BankCard
+public class DebitCard : BankCard
 {
-    protected double balance;
+    private double _balance;
     public override double Balance
     {
-        get { return balance; }
-        protected set { balance = value; }
+        get { return _balance; }
+        protected set { _balance = value; }
     }
 
     public override void AddMoney(double money)

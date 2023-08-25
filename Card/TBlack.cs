@@ -1,6 +1,6 @@
 ﻿namespace Card;
 
-internal class TBlack : DebitCard
+public class TBlack : DebitCard
 {
     public override void AddMoney(double money)
     {
