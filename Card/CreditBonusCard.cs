@@ -4,7 +4,7 @@ internal class CreditBonusCard : CreditCard
 {
     private double _bonus;
 
-    public override bool Pay(int money)
+    public override bool Pay(double money)
     {
         if (_balance - money >= 0)
         {
@@ -26,23 +26,24 @@ internal class CreditBonusCard : CreditCard
         }
     }
 
-    public bool BonusPay(int money)
+    public bool BonusPay(double money)
     {
         if (_bonus >= money)
         {
             _bonus -= money;
             return true;
         }
-        else if (_bonus < money && Pay((int)(money - _bonus)))
+        else if (_bonus < money && Pay(money - _bonus))
         {
             _bonus = 0;
             return true;
         }
         return false;
     }
-    private void _getBonus(int money)
+    private void _getBonus(double money)
     {
-        _bonus += (double)money * 0.0001;
+        _bonus += money * 0.0001;
+        Console.WriteLine($"You will receive bonus: {money * 0.005}");
     }
 
     public override void AllInfo()

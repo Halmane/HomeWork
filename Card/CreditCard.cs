@@ -2,16 +2,16 @@
 
 internal class CreditCard : BankCard
 {
-    protected int balance;
-    protected int _creditLimit = 10000;
-    protected int _creditBalance = 10000;
-    public override int _balance
+    protected double balance;
+    protected double _creditLimit = 10000;
+    protected double _creditBalance = 10000;
+    public override double _balance
     {
         get { return balance; }
         protected set { balance = value; }
     }
 
-    public override void AddMoney(int money)
+    public override void AddMoney(double money)
     {
         if (_creditBalance < _creditLimit)
         {
@@ -27,7 +27,7 @@ internal class CreditCard : BankCard
             _balance += money;
     }
 
-    public override bool Pay(int money)
+    public override bool Pay(double money)
     {
         if (_balance - money >= 0)
         {

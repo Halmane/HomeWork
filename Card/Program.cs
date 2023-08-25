@@ -1,12 +1,7 @@
 ﻿using Card;
 
-var creditCard = new CreditBonusCard();
-creditCard.AddMoney(100000000);
-creditCard.Pay(100000000);
-creditCard.AddMoney(100000000);
-creditCard.Pay(100000000);
-creditCard.AddMoney(100000000);
-creditCard.Pay(100000000);
-creditCard.AllInfo();
-creditCard.BonusPay(30007);
-creditCard.AllInfo();
+var card = new TBlack();
+card.AddMoney(100000);
+card.BalanceInfo();
+card.Pay(70000);
+card.BalanceInfo();

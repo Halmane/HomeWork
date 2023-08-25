@@ -2,19 +2,19 @@
 
 internal class DebitCard : BankCard
 {
-    private int balance;
-    public override int _balance
+    protected double balance;
+    public override double _balance
     {
         get { return balance; }
         protected set { balance = value; }
     }
 
-    public override void AddMoney(int money)
+    public override void AddMoney(double money)
     {
         _balance += money;
     }
 
-    public override bool Pay(int money)
+    public override bool Pay(double money)
     {
         if (_balance - money >= 0)
         {

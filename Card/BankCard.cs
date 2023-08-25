@@ -2,10 +2,10 @@
 
 abstract class BankCard
 {
-    public abstract int _balance { get; protected set; }
+    public abstract double _balance { get; protected set; }
 
-    public abstract void AddMoney(int money);
-    public abstract bool Pay(int money);
+    public abstract void AddMoney(double money);
+    public abstract bool Pay(double money);
 
     public abstract void BalanceInfo();
 
