@@ -1,5 +1,4 @@
 ﻿using Card;
-using static System.Net.Mime.MediaTypeNames;
 
 Test(new CreditBonusCard());
 Test(new TBlack());
