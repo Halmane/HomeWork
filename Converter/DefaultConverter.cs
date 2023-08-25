@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Converter
 {
-    internal class DefaultConverter : CurrencyConverter
+    internal class DefaultConverter : ICurrencyConverter
     {
-        public string CurrencyCode { get; set; }
+        public string CurrencyCode { get; private set; }
         public DefaultConverter(string code)
         {
             CurrencyCode = code;

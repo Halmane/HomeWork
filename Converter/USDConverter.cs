@@ -1,8 +1,8 @@
 ﻿namespace Converter;
 
-public class USDConverter : CurrencyConverter
+public class USDConverter : ICurrencyConverter
 {
-    public string CurrencyCode { get; set; }
+    public string CurrencyCode { get; private set; }
     public USDConverter()
     {
         CurrencyCode = "USD";

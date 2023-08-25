@@ -1,7 +1,7 @@
 ﻿namespace Converter;
-public class EURConverter : CurrencyConverter
+public class EURConverter : ICurrencyConverter
 {
-    public string CurrencyCode { get; set; }
+    public string CurrencyCode { get; private set; }
     public EURConverter()
     {
         CurrencyCode = "EUR";
