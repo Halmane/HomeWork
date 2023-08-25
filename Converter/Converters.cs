@@ -2,7 +2,7 @@
 
 public static class Converters
 {
-    private static List<ICurrencyConverter> _converters = new() { new EURConverter(), new USDConverter() };
+    private static List<ICurrencyConverter> _converters = new() { new EURConverter(), new USDConverter()};
 
     public static ICurrencyConverter Get(string code)
     {
@@ -11,7 +11,7 @@ public static class Converters
         {
             return finder;
         }
-        
-        return new DefaultConverter(code);
+        _converters.Add(new DefaultConverter(code));
+        return _converters.Last();
     }
 }
