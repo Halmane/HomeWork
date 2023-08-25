@@ -4,15 +4,15 @@ internal class TBlack : DebitCard
 {
     public override void AddMoney(double money)
     {
-        _balance += money + money * 0.00005;
+        Balance += money + money * 0.00005;
     }
 
     public override bool Pay(double money)
     {
-        if (_balance - money >= 0)
+        if (Balance - money >= 0)
         {
-            _balance -= money;
-            _getCashback(money);
+            Balance -= money;
+            GetCashback(money);
             return true;
         }
         else
@@ -22,11 +22,11 @@ internal class TBlack : DebitCard
         }
     }
 
-    private void _getCashback(double money)
+    private void GetCashback(double money)
     {
         if (money >= 5000)
         {
-            _balance += money * 0.005;
+            Balance += money * 0.005;
             Console.WriteLine($"You will receive cashback: {money * 0.005}");
         }
             

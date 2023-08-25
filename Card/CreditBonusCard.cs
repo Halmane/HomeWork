@@ -6,17 +6,31 @@ internal class CreditBonusCard : CreditCard
 
     public override bool Pay(double money)
     {
-        if (_balance - money >= 0)
+        if (_bonus >= money)
         {
-            _balance -= money;
-            _getBonus(money);
+            _bonus -= money;
             return true;
         }
-        else if (_balance - money < 0 && _creditBalance + (_balance - money) >= 0)
+        else if (_bonus < money && StandartPay(money - _bonus))
         {
-            _creditBalance += _balance - money;
-            _balance = 0;
-            _getBonus(money);
+            _bonus = 0;
+            return true;
+        }
+        return false;
+    }
+    private bool StandartPay(double money) 
+    {
+        if (Balance - money >= 0)
+        {
+            Balance -= money;
+            GetBonus(money);
+            return true;
+        }
+        else if (Balance - money < 0 && _creditBalance + (Balance - money) >= 0)
+        {
+            _creditBalance += Balance - money;
+            Balance = 0;
+            GetBonus(money);
             return true;
         }
         else
@@ -25,25 +39,10 @@ internal class CreditBonusCard : CreditCard
             return false;
         }
     }
-
-    public bool BonusPay(double money)
-    {
-        if (_bonus >= money)
-        {
-            _bonus -= money;
-            return true;
-        }
-        else if (_bonus < money && Pay(money - _bonus))
-        {
-            _bonus = 0;
-            return true;
-        }
-        return false;
-    }
-    private void _getBonus(double money)
+    private void GetBonus(double money)
     {
         _bonus += money * 0.0001;
-        Console.WriteLine($"You will receive bonus: {money * 0.005}");
+        Console.WriteLine($"You will receive bonus: {money * 0.0001}");
     }
 
     public override void AllInfo()
