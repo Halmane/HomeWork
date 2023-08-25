@@ -1,7 +1,22 @@
 ﻿using Converter;
+using System;
 
 var converter = new Converters();
-converter.Get("USD", 1000);
-converter.Get("EUR", 1000);
 
-converter.Get("RUB", 1000);
+convert(converter);
+convert(converter);
+
+
+void convert(Converters converter)
+{
+    Console.WriteLine("Введите код валюты:");
+    string code = Console.ReadLine();
+    Console.WriteLine("Введите сумму в рублях для конвертации:");
+    var value = Console.ReadLine();
+    while (!double.TryParse(value, out _) || double.Parse(value) <= 0)
+    {
+        Console.WriteLine("Неверная сумма денег, попробуйте снова:");
+        value = Console.ReadLine();
+    }
+    converter.Get(code, double.Parse(value));
+}
