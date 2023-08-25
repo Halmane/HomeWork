@@ -2,9 +2,9 @@
 
 internal class CreditCard : BankCard
 {
-    private int balance;
-    private int _creditLimit = 10000;
-    private int _creditBalance = 10000;
+    protected int balance;
+    protected int _creditLimit = 10000;
+    protected int _creditBalance = 10000;
     public override int _balance
     {
         get { return balance; }
@@ -29,12 +29,12 @@ internal class CreditCard : BankCard
 
     public override bool Pay(int money)
     {
-        if(_balance - money >= 0)
+        if (_balance - money >= 0)
         {
             _balance -= money;
             return true;
         }
-        else if (_balance - money < 0 && _creditBalance +(_balance - money) >= 0)
+        else if (_balance - money < 0 && _creditBalance + (_balance - money) >= 0)
         {
             _creditBalance += _balance - money;
             _balance = 0;

@@ -35,6 +35,6 @@ internal class DebitCard : BankCard
 
     public override void AllInfo()
     {
-        throw new NotImplementedException();
+        BalanceInfo();
     }
 }
