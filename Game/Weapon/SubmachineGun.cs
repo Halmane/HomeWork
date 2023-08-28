@@ -1,4 +1,6 @@
-﻿namespace Game.Weapon;
+﻿using Game.TypeOfFire;
+
+namespace Game.Weapon;
 
 public class SubmachineGun : AbstractWeapon
 {

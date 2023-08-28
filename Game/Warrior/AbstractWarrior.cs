@@ -1,34 +1,44 @@
 ﻿using Game.Randomize;
+using Game.TypeOfFire;
 using Game.Weapon;
 
 namespace Game.Warrior;
 
 public abstract class AbstractWarrior : IWarrior
 {
-    private int _accuracy;
-    private static int _maxHP;
-    private int _hP = _maxHP;
-    private AbstractWeapon _weapon;
+    public int Accuracy { get; protected set; }
+    public static int MaxHP { get; protected set; }
+    public int _hP = MaxHP;
+    public AbstractWeapon Weapon { get; protected set; }
     public bool IsKilled { get; set; }
     public int DodgeChance { get; set; }
 
+    public AbstractWarrior(int maxHP, AbstractWeapon weapon, int dodgeChance, int accuracy)
+    {
+        MaxHP = maxHP;
+        Weapon = weapon;
+        DodgeChance = dodgeChance;
+        Accuracy = accuracy;
+        IsKilled = false;
+    }
+
     public void Atack(IWarrior warrior)
     {
-        if (_weapon.AmmoMagazineEmpty)
+        if (Weapon.AmmoMagazineEmpty)
         {
-            _weapon.FillFullMagazin();
+            Weapon.FillFullMagazin();
             return;
         }
-        _weapon.FillFullMagazin();
-        for (int i = 0; i < _weapon.FireType._ammoCount; i++)
+        Weapon.FillFullMagazin();
+        for (int i = 0; i < Weapon.FireType._ammoCount; i++)
         {
-            warrior.TakeDamage(_accuracy.Chance() && !warrior.DodgeChance.Chance() ? _weapon.ShootAmmo().Pop().Damage() : 0);
+            warrior.TakeDamage(Accuracy.Chance() && !warrior.DodgeChance.Chance() ? Weapon.ShootAmmo().Pop().Damage() : 0);
         }
     }
 
     public void TakeDamage(int damage)
     {
         _hP -= damage;
-        if (_hP <= 0) IsKilled = false;
+        if (_hP <= 0) IsKilled = true;
     }
 }
