@@ -1,6 +1,4 @@
-﻿using static System.Net.Mime.MediaTypeNames;
-
-namespace Game.Weapon;
+﻿namespace Game.Weapon;
 public static class Weapons
 {
     public static AbstractWeapon CreatePistol()

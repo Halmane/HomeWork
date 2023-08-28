@@ -1,4 +1,5 @@
-﻿namespace Game.Weapon;
+﻿using Game.TypeOfFire;
+namespace Game.Weapon;
 public class Pistol : AbstractWeapon
 {
     public Pistol()
