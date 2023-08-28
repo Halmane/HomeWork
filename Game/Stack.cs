@@ -1,9 +1,9 @@
 ﻿namespace Game;
-internal class Stack<T> where T : class
+public class Stack<T> where T : class
 {
     private class StackElement<T> where T : class
     {
-        public StackElement<T>? Previous = null;
+        public StackElement<T>? Previous { get; set; }
         public T Value { get; set; }
     }
     private StackElement<T> _item ;
@@ -18,7 +18,7 @@ internal class Stack<T> where T : class
     public T? Pop() 
     {
         if (IsEmpty()) return null;
-        T pop = _item.Value;
+        var pop = _item.Value;
         _item = _item.Previous;
         _count--;
         return pop;
