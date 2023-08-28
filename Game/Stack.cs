@@ -1,20 +1,31 @@
 ﻿namespace Game;
 internal class Stack<T> where T : class
 {
-    private List<T> items = new List<T>();
+    private class StackElement<T> where T : class
+    {
+        public StackElement<T>? Previous = null;
+        public T Value { get; set; }
+    }
+    private StackElement<T> _item ;
+    private int _count = 0;
+
     public void Push(T item)
     {
-        items.Add(item);
+        _count++;
+        _item = new StackElement<T>() { Previous = _item, Value = item } ;
     }
 
     public T? Pop() 
     {
         if (IsEmpty()) return null;
-        return items[items.Count - 1];
+        T pop = _item.Value;
+        _item = _item.Previous;
+        _count--;
+        return pop;
     }
 
     public bool IsEmpty()
     {
-        return items.Count == 0;
+        return _count == 0;
     }
 }
