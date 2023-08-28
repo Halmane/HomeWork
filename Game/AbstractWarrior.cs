@@ -18,7 +18,7 @@ internal class AbstractWarrior : IWarrior
         }
         _weapon.FillFullMagazin();
         int damage = 0;
-        for (int i = 0; i < _weapon.AmmoStack.Сount; i++)
+        for (int i = 0; i < _weapon.FireType._ammoCount; i++)
         {
             warrior.TakeDamage(_accuracy.Chance() && !warrior.DodgeChance.Chance() ? _weapon.ShootAmmo().Pop().Damage(): 0);
         }
