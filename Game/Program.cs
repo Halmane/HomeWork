@@ -7,3 +7,4 @@ stack.Push("kek");
 Console.WriteLine(stack.Pop());
 Console.WriteLine(stack.Pop());
 Console.WriteLine(stack.Pop());
+
