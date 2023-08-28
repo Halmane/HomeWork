@@ -1,19 +1,15 @@
 ﻿namespace Catch;
-
 public class Wheel
 {
-
     public double Pressure { get; private set; }
-
-
     private void CheckPressure(double value)
     {
         if (value < 0 || value > 10)
-            throw new IncorrectPressureException("Incorrect Pressure Exception");
+            throw new IncorrectPressureException(value);
         if (value > 2.5 && value <= 10)
-            throw new TooHighPressureException("Too High Pressure Exception");
+            throw new TooHighPressureException(value);
         if (value >= 0 && value < 1.6)
-            throw new TooLowPressureException("Too Low Pressure Exception");
+            throw new TooLowPressureException(value);
     }
 
     public void ChangePressure(double newPressure)

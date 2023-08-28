@@ -1,6 +1,6 @@
 ﻿namespace Catch;
-[Serializable]
+
 internal class IncorrectPressureException : Exception
 {
-    public IncorrectPressureException(string massege) : base(massege) { }
+    public IncorrectPressureException(double pressure) : base($"Incorrect Pressure Exception : {pressure}") { }
 }

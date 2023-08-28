@@ -1,10 +1,6 @@
-﻿using System.Runtime.Serialization;
+﻿namespace Catch;
 
-namespace Catch
+internal class TooLowPressureException : Exception
 {
-    [Serializable]
-    internal class TooLowPressureException : Exception
-    {
-        public TooLowPressureException(string massege) : base(massege) { }
-    }
+    public TooLowPressureException(double pressure) : base($"Too Low Pressure Exception : {pressure}") { }
 }
