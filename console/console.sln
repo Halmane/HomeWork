@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Converter", "..\Converter\C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catch", "..\Catch\Catch.csproj", "{A2A8D9C1-0502-43A9-8529-9B8B7596FDE6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game", "..\Game\Game.csproj", "{69AD188E-FCF0-4328-8A26-3196AA2BC6B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{A2A8D9C1-0502-43A9-8529-9B8B7596FDE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2A8D9C1-0502-43A9-8529-9B8B7596FDE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2A8D9C1-0502-43A9-8529-9B8B7596FDE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69AD188E-FCF0-4328-8A26-3196AA2BC6B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69AD188E-FCF0-4328-8A26-3196AA2BC6B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69AD188E-FCF0-4328-8A26-3196AA2BC6B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69AD188E-FCF0-4328-8A26-3196AA2BC6B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
