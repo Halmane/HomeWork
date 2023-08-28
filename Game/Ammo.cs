@@ -1,4 +1,6 @@
-﻿namespace Game;
+﻿using Game.Randomize;
+
+namespace Game;
 public class Ammo
 {
     private int _damage;

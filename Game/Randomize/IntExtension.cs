@@ -1,4 +1,4 @@
-﻿namespace Game;
+﻿namespace Game.Randomize;
 public static class IntExtension
 {
     public static bool Chance(this int value)

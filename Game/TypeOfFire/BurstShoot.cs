@@ -1,4 +1,4 @@
-﻿namespace Game;
+﻿namespace Game.TypeOfFire;
 
 public class BurstShoot : FireType
 {

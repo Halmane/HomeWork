@@ -7,11 +7,11 @@ public class Stack<T> where T : class
         public T Value { get; set; }
     }
     private StackElement<T> _item ;
-    public int Сount = 0;
+    private int _count = 0;
 
     public void Push(T item)
     {
-        Сount++;
+        _count++;
         _item = new StackElement<T>() { Previous = _item, Value = item } ;
     }
 
@@ -20,12 +20,12 @@ public class Stack<T> where T : class
         if (IsEmpty()) return null;
         var pop = _item.Value;
         _item = _item.Previous;
-        Сount--;
+        _count--;
         return pop;
     }
 
     public bool IsEmpty()
     {
-        return Сount == 0;
+        return _count == 0;
     }
 }

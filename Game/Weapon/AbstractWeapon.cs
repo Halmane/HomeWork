@@ -1,12 +1,15 @@
-﻿namespace Game;
+﻿using Game.TypeOfFire;
 
-public class AbstractWeapon
+namespace Game.Weapon;
+
+public abstract class AbstractWeapon
 {
+    private static Ammo _ammo;
     private int _maxAmmo;
+    public bool AmmoMagazineEmpty = true;
     public FireType FireType { get; private set; }
     public Stack<Ammo> AmmoStack { get; private set; }
-    private bool _ammoMagazineEmpty = true;
-    private static Ammo _ammo;
+
 
     public AbstractWeapon(int maxAmmo, FireType fireType, Ammo ammo)
     {
@@ -28,14 +31,17 @@ public class AbstractWeapon
         {
             _addAmmo();
         }
+        AmmoMagazineEmpty = false;
     }
 
     public Stack<Ammo> ShootAmmo()
     {
         var shootAmmo = new Stack<Ammo>();
-        for(int i = 0; i < FireType._ammoCount; i++)
+        for (int i = 0; i < FireType._ammoCount; i++)
         {
-            shootAmmo.Push(AmmoStack.Pop());
+            var temp = AmmoStack.Pop();
+            if (temp == null) AmmoMagazineEmpty = true;
+            shootAmmo.Push(temp);
         }
         return shootAmmo;
     }
