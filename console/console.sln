@@ -19,9 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monitor", "..\Monitor\Monit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nature", "..\Nature\Nature.csproj", "{E10ED6C7-D5B9-48A2-8D3C-C2528FE2C26A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Card", "..\Card\Card.csproj", "{5A746FE9-CA2B-47F2-96C1-557984F11E4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Card", "..\Card\Card.csproj", "{5A746FE9-CA2B-47F2-96C1-557984F11E4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Converter", "..\Converter\Converter.csproj", "{E96F44F4-56E5-4782-ADB5-B62A3CA59189}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Converter", "..\Converter\Converter.csproj", "{E96F44F4-56E5-4782-ADB5-B62A3CA59189}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catch", "..\Catch\Catch.csproj", "{A2A8D9C1-0502-43A9-8529-9B8B7596FDE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{E96F44F4-56E5-4782-ADB5-B62A3CA59189}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E96F44F4-56E5-4782-ADB5-B62A3CA59189}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E96F44F4-56E5-4782-ADB5-B62A3CA59189}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2A8D9C1-0502-43A9-8529-9B8B7596FDE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2A8D9C1-0502-43A9-8529-9B8B7596FDE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2A8D9C1-0502-43A9-8529-9B8B7596FDE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2A8D9C1-0502-43A9-8529-9B8B7596FDE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
