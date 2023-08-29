@@ -10,6 +10,7 @@ public class BattleState
     private int _hpSecondTeam;
     private Team _firstTeam;
     private Team _secondTeam;
+    private const int NumberOfTurnsForDraw = 15;
 
     public bool FirstTeamWin { get; private set; }
     public bool SecondTeamWin { get; private set; }
@@ -74,7 +75,7 @@ public class BattleState
     public bool IsGameOver()
     {
         if (
-            NumberOfTurns == 15
+            NumberOfTurns == NumberOfTurnsForDraw
             && _aliveWarriorsFirstTeam > 0
             && _aliveWarriorsSecondTeam == _aliveWarriorsFirstTeam
         ) 
