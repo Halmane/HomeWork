@@ -11,15 +11,24 @@ public class Team
     {
         for (int i = 0; i <= 4; i++)
         {
-            if (20.Chance()) Warriors.Add(new General());
-            else if (40.Chance()) Warriors.Add(new Captain());
-            else Warriors.Add(new Soldier());
+            if (20.Chance())
+                Warriors.Add(new General());
+            else if (40.Chance())
+                Warriors.Add(new Captain());
+            else
+                Warriors.Add(new Soldier());
         }
     }
 
-    public void WarriorIsDead(int i)
+    public void ShaffleTeam()
     {
-        if (Warriors[i].IsKilled)
-            Warriors.Remove(Warriors[i]);
+        Warriors.OrderBy(x => Random.Shared.Next()).ToList();
+    }
+
+    public void WarriorIsDead(AbstractWarrior warrior)
+    {
+        var findWarrior = Warriors.Find(x => x == warrior);
+        if (findWarrior.IsKilled)
+            Warriors.Remove(findWarrior);
     }
 }

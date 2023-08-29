@@ -4,9 +4,10 @@ namespace Game.Weapon;
 
 public abstract class AbstractWeapon
 {
-    private static Ammo _ammo;
+    private Ammo _ammo;
     private int _maxAmmo;
-    public bool AmmoMagazineEmpty = true;
+
+    public bool AmmoMagazineEmpty { get; private set; }
     public FireType FireType { get; private set; }
     public Stack<Ammo> AmmoStack { get; private set; }
 
@@ -16,6 +17,7 @@ public abstract class AbstractWeapon
         _maxAmmo = maxAmmo;
         FireType = fireType;
         _ammo = ammo;
+        AmmoMagazineEmpty = true;
     }
 
 
@@ -34,17 +36,18 @@ public abstract class AbstractWeapon
         AmmoMagazineEmpty = false;
     }
 
-    public Stack<Ammo> ShootAmmo()
+    public Ammo[] ShootAmmo()
     {
-        var shootAmmo = new Stack<Ammo>();
+        Ammo[] shootAmmo = new Ammo[FireType.AmmoCount];
         if (AmmoStack.Count < FireType.AmmoCount)
         {
             AmmoMagazineEmpty = true;
+            return shootAmmo;
         }
         for (int i = 0; i < FireType.AmmoCount; i++)
         {
             var temp = AmmoStack.Pop();
-            shootAmmo.Push(temp);
+            shootAmmo[i] = temp;
         }
         return shootAmmo;
     }

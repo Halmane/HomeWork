@@ -25,13 +25,13 @@ public class Battle
     {
         while (!_endGame) 
         {
-            _teamOne.Warriors = _teamOne.Warriors.OrderBy(x => Random.Shared.Next()).ToList();
-            _teamTwo.Warriors = _teamTwo.Warriors.OrderBy(x => Random.Shared.Next()).ToList();
+            _teamOne.ShaffleTeam();
+            _teamTwo.ShaffleTeam();
             for (int i = 0; i < _teamOne.Warriors.Count; i++) 
             {
                 int randomEnemy = Random.Shared.Next(0, _teamTwo.Warriors.Count - 1);
                 _teamOne.Warriors[i].Atack(_teamTwo.Warriors[randomEnemy]);
-                _teamTwo.WarriorIsDead(randomEnemy);
+                _teamTwo.WarriorIsDead(_teamTwo.Warriors[randomEnemy]);
                 _endGame = _battleState.WinTeam(_teamOne, _teamTwo);
                 if (_endGame) return;
             }
@@ -39,7 +39,7 @@ public class Battle
             {
                 int randomEnemy = Random.Shared.Next(0, _teamOne.Warriors.Count - 1);
                 _teamTwo.Warriors[i].Atack(_teamOne.Warriors[randomEnemy]);
-                _teamOne.WarriorIsDead(randomEnemy);
+                _teamOne.WarriorIsDead(_teamOne.Warriors[randomEnemy]);
                 _endGame = _battleState.WinTeam(_teamOne, _teamTwo);
                 if (_endGame) return;
             }

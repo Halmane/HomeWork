@@ -26,7 +26,6 @@ public abstract class AbstractWarrior : IWarrior
 
     public void Atack(IWarrior warrior)
     {
-        if (IsKilled) return;
         var shootAmmo = Weapon.ShootAmmo();
         if (Weapon.AmmoMagazineEmpty)
         {
@@ -35,7 +34,7 @@ public abstract class AbstractWarrior : IWarrior
         }
         for (int i = 0; i < Weapon.FireType.AmmoCount; i++)
         {
-            int damage = shootAmmo.Pop().Damage();
+            int damage = shootAmmo[i].Damage();
             if (damage == 0)
             {
                 Weapon.FillFullMagazin();
