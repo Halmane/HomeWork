@@ -35,7 +35,7 @@ public class Battle
             if (randomEnemy.IsKilled)
                 secondWarriors.RemoveWarrior(randomEnemy);
             _battleState.UpdateCommandsStateInfo();
-            if (_battleState.FirstTeamWin || _battleState.SecondTeamWin || _battleState.Draw)
+            if (_battleState.IsGameOver())
             {
                 _isGameEnd = true;
                 return;
