@@ -44,7 +44,7 @@ public class Battle
                 if (_endGame) return;
             }
             ButtleInfo();
-            //Thread.Sleep(500);
+            Thread.Sleep(500);
         }
     }
 }
