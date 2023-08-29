@@ -1,49 +1,55 @@
-﻿namespace Game;
+﻿using Game.Warrior;
+
+namespace Game;
 
 public class Battle
 {
     private Team _teamOne;
     private Team _teamTwo;
-    private bool _endGame;
+    private bool _isGameEnd;
     private BattleState _battleState = new BattleState();
 
     public Battle()
     {
         _teamOne = new Team();
         _teamTwo = new Team();
-        _endGame = false;
-        BattleInfo();
+        _isGameEnd = false;
+        PrintBattleInfo();
     }
 
-    public void BattleInfo()
+    public void PrintBattleInfo()
     {
-        if (!_endGame)
+        if (!_isGameEnd)
             _battleState.PrintCommandsStateInfo(_teamOne, _teamTwo);
     }
 
-    public void War()
+    private void Fight(Team firstWarriors, Team secondWarriors)
     {
-        while (!_endGame) 
+        for (int i = 0; i < firstWarriors.Warriors.Count; i++)
         {
-            _teamOne.ShuffleTeam();
-            _teamTwo.ShuffleTeam();
-            for (int i = 0; i < _teamOne.Warriors.Count; i++) 
+            int randomEnemyIndex = Random.Shared.Next(0, secondWarriors.Warriors.Count);
+            var rendomEnemy = secondWarriors.Warriors[randomEnemyIndex];
+            firstWarriors.Warriors[i].Attack(rendomEnemy);
+            if (rendomEnemy.IsKilled)
+                secondWarriors.RemoveWarrior(rendomEnemy);
+            if (_battleState.WinTeam(_teamOne, _teamTwo))
             {
-                int randomEnemy = Random.Shared.Next(0, _teamTwo.Warriors.Count - 1);
-                _teamOne.Warriors[i].Attack(_teamTwo.Warriors[randomEnemy]);
-                _teamTwo.WarriorIsDead(_teamTwo.Warriors[randomEnemy]);
-                _endGame = _battleState.WinTeam(_teamOne, _teamTwo);
-                if (_endGame) return;
+                _isGameEnd = true;
+                return;
             }
-            for (int i = 0; i < _teamTwo.Warriors.Count; i++)
-            {
-                int randomEnemy = Random.Shared.Next(0, _teamOne.Warriors.Count - 1);
-                _teamTwo.Warriors[i].Attack(_teamOne.Warriors[randomEnemy]);
-                _teamOne.WarriorIsDead(_teamOne.Warriors[randomEnemy]);
-                _endGame = _battleState.WinTeam(_teamOne, _teamTwo);
-                if (_endGame) return;
-            }
-            BattleInfo();
+        }
+    }
+
+    public void StartBattle()
+    {
+        _teamOne.ShuffleTeam();
+        _teamTwo.ShuffleTeam();
+        while (!_isGameEnd)
+        {
+            Fight(_teamOne, _teamTwo);
+            Fight(_teamTwo, _teamOne);
+            
+            PrintBattleInfo();
             Thread.Sleep(500);
         }
     }

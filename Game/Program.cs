@@ -3,4 +3,4 @@ using Game.Warrior;
 using Game.Weapon;
 
 var battle = new Battle();
-battle.War();
+battle.StartBattle();

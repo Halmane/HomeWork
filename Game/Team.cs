@@ -26,10 +26,9 @@ public class Team
         Warriors = Warriors.OrderBy(x => Random.Shared.Next()).ToList();
     }
 
-    public void WarriorIsDead(AbstractWarrior warrior)
+
+    public void RemoveWarrior(AbstractWarrior warrior)
     {
-        var findWarrior = Warriors.Find(x => x == warrior);
-        if (findWarrior.IsKilled)
-            Warriors.Remove(findWarrior);
+        Warriors.Remove(warrior);
     }
 }
