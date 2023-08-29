@@ -11,7 +11,6 @@ public abstract class AbstractWeapon
     public FireType FireType { get; private set; }
     public Stack<Ammo> AmmoStack { get; private set; }
 
-
     public AbstractWeapon(int maxAmmo, FireType fireType, Ammo ammo)
     {
         _maxAmmo = maxAmmo;
@@ -19,7 +18,6 @@ public abstract class AbstractWeapon
         _ammo = ammo;
         AmmoMagazineEmpty = true;
     }
-
 
     private void AddAmmo()
     {
@@ -41,9 +39,9 @@ public abstract class AbstractWeapon
         if (AmmoStack.Count < FireType.AmmoCount)
         {
             AmmoMagazineEmpty = true;
-            return null;
+            return Array.Empty<Ammo>();
         }
-        Ammo[] shootAmmo = new Ammo[FireType.AmmoCount];
+        var shootAmmo = new Ammo[FireType.AmmoCount];
         for (int i = 0; i < FireType.AmmoCount; i++)
         {
             var temp = AmmoStack.Pop();

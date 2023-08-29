@@ -30,7 +30,7 @@ public class BattleState
         }
     }
 
-    public void CommandsStateInfo(Team teamOne, Team teamTwo)
+    public void PrintCommandsStateInfo(Team teamOne, Team teamTwo)
     {
         CommandsState(teamOne, teamTwo);
 

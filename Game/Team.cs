@@ -5,11 +5,12 @@ namespace Game;
 
 public class Team
 {
-    public List<AbstractWarrior> Warriors = new List<AbstractWarrior>();
+    public List<AbstractWarrior> Warriors { get; private set; }
 
-    public Team()
+    public Team(int size = 5)
     {
-        for (int i = 0; i <= 4; i++)
+        Warriors = new List<AbstractWarrior>();
+        for (int i = 0; i < size; i++)
         {
             if (20.Chance())
                 Warriors.Add(new General());
@@ -20,9 +21,9 @@ public class Team
         }
     }
 
-    public void ShaffleTeam()
+    public void ShuffleTeam()
     {
-        Warriors.OrderBy(x => Random.Shared.Next()).ToList();
+        Warriors = Warriors.OrderBy(x => Random.Shared.Next()).ToList();
     }
 
     public void WarriorIsDead(AbstractWarrior warrior)

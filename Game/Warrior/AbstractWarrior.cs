@@ -1,5 +1,4 @@
 ﻿using Game.Randomize;
-using Game.FireTypes;
 using Game.Weapon;
 
 namespace Game.Warrior;
@@ -35,7 +34,8 @@ public abstract class AbstractWarrior : IWarrior
         for (int i = 0; i < shootAmmo.Length; i++)
         {
             int damage = shootAmmo[i].Damage();
-            if (Accuracy.Chance() && !warrior.DodgeChance.Chance()) warrior.TakeDamage(damage);
+            if (Accuracy.Chance() && !warrior.DodgeChance.Chance())
+                warrior.TakeDamage(damage);
         }
     }
 
@@ -48,6 +48,5 @@ public abstract class AbstractWarrior : IWarrior
             IsKilled = true;
             HP = 0;
         }
-            
     }
 }

@@ -12,21 +12,21 @@ public class Battle
         _teamOne = new Team();
         _teamTwo = new Team();
         _endGame = false;
-        ButtleInfo();
+        BattleInfo();
     }
 
-    public void ButtleInfo()
+    public void BattleInfo()
     {
         if (!_endGame)
-            _battleState.CommandsStateInfo(_teamOne, _teamTwo);
+            _battleState.PrintCommandsStateInfo(_teamOne, _teamTwo);
     }
 
     public void War()
     {
         while (!_endGame) 
         {
-            _teamOne.ShaffleTeam();
-            _teamTwo.ShaffleTeam();
+            _teamOne.ShuffleTeam();
+            _teamTwo.ShuffleTeam();
             for (int i = 0; i < _teamOne.Warriors.Count; i++) 
             {
                 int randomEnemy = Random.Shared.Next(0, _teamTwo.Warriors.Count - 1);
@@ -43,7 +43,7 @@ public class Battle
                 _endGame = _battleState.WinTeam(_teamOne, _teamTwo);
                 if (_endGame) return;
             }
-            ButtleInfo();
+            BattleInfo();
             Thread.Sleep(500);
         }
     }
