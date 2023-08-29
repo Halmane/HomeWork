@@ -1,4 +1,4 @@
-﻿using Game.TypeOfFire;
+﻿using Game.FireTypes;
 
 namespace Game.Weapon;
 
@@ -37,10 +37,13 @@ public abstract class AbstractWeapon
     public Stack<Ammo> ShootAmmo()
     {
         var shootAmmo = new Stack<Ammo>();
-        for (int i = 0; i < FireType._ammoCount; i++)
+        if (AmmoStack.Count < FireType.AmmoCount)
+        {
+            AmmoMagazineEmpty = true;
+        }
+        for (int i = 0; i < FireType.AmmoCount; i++)
         {
             var temp = AmmoStack.Pop();
-            if (temp == null) AmmoMagazineEmpty = true;
             shootAmmo.Push(temp);
         }
         return shootAmmo;

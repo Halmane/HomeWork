@@ -1,5 +1,5 @@
 ﻿using Game.Randomize;
-using Game.TypeOfFire;
+using Game.FireTypes;
 using Game.Weapon;
 
 namespace Game.Warrior;
@@ -20,25 +20,43 @@ public abstract class AbstractWarrior : IWarrior
         DodgeChance = dodgeChance;
         Accuracy = accuracy;
         IsKilled = false;
+        Weapon.FillFullMagazin();
     }
 
     public void Atack(IWarrior warrior)
     {
+        if (IsKilled) return;
+        var shootAmmo = Weapon.ShootAmmo();
         if (Weapon.AmmoMagazineEmpty)
         {
             Weapon.FillFullMagazin();
             return;
         }
-        Weapon.FillFullMagazin();
-        for (int i = 0; i < Weapon.FireType._ammoCount; i++)
+        for (int i = 0; i < Weapon.FireType.AmmoCount; i++)
         {
-            warrior.TakeDamage(Accuracy.Chance() && !warrior.DodgeChance.Chance() ? Weapon.ShootAmmo().Pop().Damage() : 0);
+            int damage = shootAmmo.Pop().Damage();
+            if (damage == 0)
+            {
+                Weapon.FillFullMagazin();
+                return;
+            }
+            warrior.TakeDamage(
+                Accuracy.Chance() && !warrior.DodgeChance.Chance()
+                    ? damage
+                    : 0
+            );
         }
     }
 
     public void TakeDamage(int damage)
     {
-        _hP -= damage;
-        if (_hP <= 0) IsKilled = true;
+        if (!IsKilled)
+            _hP -= damage;
+        if (_hP <= 0)
+        {
+            IsKilled = true;
+            _hP = 0;
+        }
+            
     }
 }

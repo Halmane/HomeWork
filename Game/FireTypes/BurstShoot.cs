@@ -1,9 +1,9 @@
-﻿namespace Game.TypeOfFire;
+﻿namespace Game.FireTypes;
 
 public class BurstShoot : FireType
 {
     public BurstShoot(int ammoCount)
     {
-        _ammoCount = ammoCount;
+        AmmoCount = ammoCount;
     }
 }

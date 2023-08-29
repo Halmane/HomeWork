@@ -1,31 +1,41 @@
 ﻿namespace Game;
-public class Stack<T> where T : class
+
+public class Stack<T>
+    where T : class
 {
-    private class StackElement<T> where T : class
+    private class StackElement<T>
+        where T : class
     {
         public StackElement<T>? Previous { get; set; }
         public T Value { get; set; }
     }
-    private StackElement<T> _item ;
-    private int _count = 0;
+
+    private StackElement<T> _item;
+    public int Count { get; private set; }
+
+    public Stack()
+    {
+        Count = 0;
+    }
 
     public void Push(T item)
     {
-        _count++;
-        _item = new StackElement<T>() { Previous = _item, Value = item } ;
+        Count++;
+        _item = new StackElement<T>() { Previous = _item, Value = item };
     }
 
-    public T? Pop() 
+    public T? Pop()
     {
-        if (IsEmpty()) return null;
+        if (IsEmpty())
+            return null;
         var pop = _item.Value;
         _item = _item.Previous;
-        _count--;
+        Count--;
         return pop;
     }
 
     public bool IsEmpty()
     {
-        return _count == 0;
+        return Count == 0;
     }
 }
