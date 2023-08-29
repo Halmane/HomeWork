@@ -61,7 +61,6 @@ public class BattleState
             
 
             """;
-        IsGameOver();
     }
 
     public void PrintCommandsStateInfo()
@@ -75,7 +74,7 @@ public class BattleState
     public bool IsGameOver()
     {
         if (
-            NumberOfTurns == NumberOfTurnsForDraw
+            NumberOfTurns >= NumberOfTurnsForDraw
             && _aliveWarriorsFirstTeam > 0
             && _aliveWarriorsSecondTeam == _aliveWarriorsFirstTeam
         ) 

@@ -20,7 +20,6 @@ public class Battle
 
     public void PrintBattleInfo()
     {
-        _battleState.NumberOfTurns++;
         if (!_isGameEnd)
             _battleState.PrintCommandsStateInfo();
     }
@@ -49,6 +48,7 @@ public class Battle
         _teamTwo.ShuffleTeam();
         while (!_isGameEnd)
         {
+            _battleState.NumberOfTurns++;
             Fight(_teamOne, _teamTwo);
             Fight(_teamTwo, _teamOne);
 
