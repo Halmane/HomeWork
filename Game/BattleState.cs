@@ -4,41 +4,45 @@ namespace Game;
 
 public class BattleState
 {
-    private int _aliveWarriorsTeamOne;
-    private int _hpTeamOne;
-    private int _aliveWarriorsTeamTwo;
-    private int _hpTeamTwo;
+    private int _aliveWarriorsFirstTeam;
+    private int _hpFirstTeam;
+    private int _aliveWarriorsSecondTeam;
+    private int _hpSecondTeam;
+    
 
-    private void CommandsState(Team teamOne, Team teamTwo)
+    public bool FirstTeamWin { get; private set; }
+    public bool SecondTeamWin { get; private set; }
+
+    private void CommandsStateInfo(Team teamOne, Team teamTwo)
     {
-        _aliveWarriorsTeamOne = 0;
-        _hpTeamOne = 0;
-        _aliveWarriorsTeamTwo = 0;
-        _hpTeamTwo = 0;
+        _aliveWarriorsFirstTeam = 0;
+        _hpFirstTeam = 0;
+        _aliveWarriorsSecondTeam = 0;
+        _hpSecondTeam = 0;
 
         for (int i = 0; i < teamOne.Warriors.Count; i++)
         {
-            _hpTeamOne += teamOne.Warriors[i].HP;
+            _hpFirstTeam += teamOne.Warriors[i].HP;
             if (!teamOne.Warriors[i].IsKilled)
-                _aliveWarriorsTeamOne++;
+                _aliveWarriorsFirstTeam++;
         }
         for (int i = 0; i < teamTwo.Warriors.Count; i++)
         {
-            _hpTeamTwo += teamTwo.Warriors[i].HP;
+            _hpSecondTeam += teamTwo.Warriors[i].HP;
             if (!teamTwo.Warriors[i].IsKilled)
-                _aliveWarriorsTeamTwo++;
+                _aliveWarriorsSecondTeam++;
         }
     }
 
     public void PrintCommandsStateInfo(Team teamOne, Team teamTwo)
     {
-        CommandsState(teamOne, teamTwo);
+        CommandsStateInfo(teamOne, teamTwo);
 
         Console.WriteLine(
             $"""
             Team one info:
-            Team hp: {_hpTeamOne}
-            Team alive warriors: {_aliveWarriorsTeamOne} 
+            Team hp: {_hpFirstTeam}
+            Team alive warriors: {_aliveWarriorsFirstTeam} 
 
 
             """
@@ -46,8 +50,8 @@ public class BattleState
         Console.WriteLine(
             $"""
             Team two info:
-            Team hp: {_hpTeamTwo}
-            Team alive warriors: {_aliveWarriorsTeamTwo}
+            Team hp: {_hpSecondTeam}
+            Team alive warriors: {_aliveWarriorsSecondTeam}
             
 
             """
@@ -56,15 +60,17 @@ public class BattleState
 
     public bool WinTeam(Team teamOne, Team teamTwo)
     {
-        CommandsState(teamOne, teamTwo);
+        CommandsStateInfo(teamOne, teamTwo);
 
-        if (_aliveWarriorsTeamTwo == 0)
+        if (_aliveWarriorsSecondTeam == 0)
         {
+            FirstTeamWin = true;
             Console.WriteLine("Team one win!");
             return true;
         }
-        if (_aliveWarriorsTeamOne == 0)
+        if (_aliveWarriorsFirstTeam == 0)
         {
+            SecondTeamWin = true;
             Console.WriteLine("Team two win!");
             return true;
         }
