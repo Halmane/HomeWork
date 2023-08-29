@@ -18,13 +18,13 @@ public class BattleState
 
         for (int i = 0; i < teamOne.Warriors.Count; i++)
         {
-            _hpTeamOne += teamOne.Warriors[i]._hP;
+            _hpTeamOne += teamOne.Warriors[i].HP;
             if (!teamOne.Warriors[i].IsKilled)
                 _aliveWarriorsTeamOne++;
         }
         for (int i = 0; i < teamTwo.Warriors.Count; i++)
         {
-            _hpTeamTwo += teamTwo.Warriors[i]._hP;
+            _hpTeamTwo += teamTwo.Warriors[i].HP;
             if (!teamTwo.Warriors[i].IsKilled)
                 _aliveWarriorsTeamTwo++;
         }

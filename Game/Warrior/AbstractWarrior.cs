@@ -8,54 +8,45 @@ public abstract class AbstractWarrior : IWarrior
 {
     public int Accuracy { get; protected set; }
     public static int MaxHP { get; protected set; }
-    public int _hP { get; protected set; }
+    public int HP { get; protected set; }
     public AbstractWeapon Weapon { get; protected set; }
-    public bool IsKilled { get; set; }
-    public int DodgeChance { get; set; }
+    public bool IsKilled { get; protected set; }
+    public int DodgeChance { get; protected set; }
 
     public AbstractWarrior(int maxHP, AbstractWeapon weapon, int dodgeChance, int accuracy)
     {
         MaxHP = maxHP;
-        _hP = MaxHP;
+        HP = MaxHP;
         Weapon = weapon;
         DodgeChance = dodgeChance;
         Accuracy = accuracy;
         IsKilled = false;
-        Weapon.FillFullMagazin();
+        Weapon.FillFullMagazine();
     }
 
-    public void Atack(IWarrior warrior)
+    public void Attack(IWarrior warrior)
     {
         var shootAmmo = Weapon.ShootAmmo();
         if (Weapon.AmmoMagazineEmpty)
         {
-            Weapon.FillFullMagazin();
+            Weapon.FillFullMagazine();
             return;
         }
-        for (int i = 0; i < Weapon.FireType.AmmoCount; i++)
+        for (int i = 0; i < shootAmmo.Length; i++)
         {
             int damage = shootAmmo[i].Damage();
-            if (damage == 0)
-            {
-                Weapon.FillFullMagazin();
-                return;
-            }
-            warrior.TakeDamage(
-                Accuracy.Chance() && !warrior.DodgeChance.Chance()
-                    ? damage
-                    : 0
-            );
+            if (Accuracy.Chance() && !warrior.DodgeChance.Chance()) warrior.TakeDamage(damage);
         }
     }
 
     public void TakeDamage(int damage)
     {
         if (!IsKilled)
-            _hP -= damage;
-        if (_hP <= 0)
+            HP -= damage;
+        if (HP <= 0)
         {
             IsKilled = true;
-            _hP = 0;
+            HP = 0;
         }
             
     }

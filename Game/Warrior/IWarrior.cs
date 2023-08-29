@@ -2,9 +2,9 @@
 
 public interface IWarrior
 {
-    bool IsKilled { get; set; }
-    int DodgeChance { get; set; }
+    bool IsKilled { get; }
+    int DodgeChance { get; }
 
-    void Atack(IWarrior warrior);
+    void Attack(IWarrior warrior);
     void TakeDamage(int damage);
 }

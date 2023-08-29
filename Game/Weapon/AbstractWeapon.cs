@@ -26,7 +26,7 @@ public abstract class AbstractWeapon
         AmmoStack.Push(_ammo);
     }
 
-    public void FillFullMagazin()
+    public void FillFullMagazine()
     {
         AmmoStack = new Stack<Ammo>();
         for (int i = 0; i < _maxAmmo; i++)
@@ -36,14 +36,14 @@ public abstract class AbstractWeapon
         AmmoMagazineEmpty = false;
     }
 
-    public Ammo[] ShootAmmo()
+    public Ammo[]? ShootAmmo()
     {
-        Ammo[] shootAmmo = new Ammo[FireType.AmmoCount];
         if (AmmoStack.Count < FireType.AmmoCount)
         {
             AmmoMagazineEmpty = true;
-            return shootAmmo;
+            return null;
         }
+        Ammo[] shootAmmo = new Ammo[FireType.AmmoCount];
         for (int i = 0; i < FireType.AmmoCount; i++)
         {
             var temp = AmmoStack.Pop();
