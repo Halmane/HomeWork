@@ -65,6 +65,7 @@ public class BattleState
 
     public void PrintCommandsStateInfo()
     {
+        Console.Clear();
         UpdateCommandsStateInfo();
 
         Console.WriteLine(FirstTeamInfo);
