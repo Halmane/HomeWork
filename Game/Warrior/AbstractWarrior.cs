@@ -8,7 +8,7 @@ public abstract class AbstractWarrior : IWarrior
 {
     public int Accuracy { get; protected set; }
     public static int MaxHP { get; protected set; }
-    public int _hP = MaxHP;
+    public int _hP { get; protected set; }
     public AbstractWeapon Weapon { get; protected set; }
     public bool IsKilled { get; set; }
     public int DodgeChance { get; set; }
@@ -16,6 +16,7 @@ public abstract class AbstractWarrior : IWarrior
     public AbstractWarrior(int maxHP, AbstractWeapon weapon, int dodgeChance, int accuracy)
     {
         MaxHP = maxHP;
+        _hP = MaxHP;
         Weapon = weapon;
         DodgeChance = dodgeChance;
         Accuracy = accuracy;

@@ -19,7 +19,7 @@ public abstract class AbstractWeapon
     }
 
 
-    private void _addAmmo()
+    private void AddAmmo()
     {
         AmmoStack.Push(_ammo);
     }
@@ -29,7 +29,7 @@ public abstract class AbstractWeapon
         AmmoStack = new Stack<Ammo>();
         for (int i = 0; i < _maxAmmo; i++)
         {
-            _addAmmo();
+            AddAmmo();
         }
         AmmoMagazineEmpty = false;
     }
