@@ -6,7 +6,6 @@ public class ResponseMessage
 {
     [JsonPropertyName("Response")]
     public UserSearchResponse Response { get; set; }
-
     [JsonPropertyName("ErrorCode")]
     public int ErrorCode { get; set; }
 

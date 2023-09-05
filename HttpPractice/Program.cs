@@ -26,9 +26,12 @@ using HttpRequestMessage requestSecond = new HttpRequestMessage(
 );
 requestSecond.Headers.Add("X-API-Key", "bcf113bb1115487baec8fc81b76ffdfd");
 using HttpResponseMessage responceSecond = await httpClient.SendAsync(requestSecond);
-var a = await responceSecond.Content.ReadAsStringAsync();
+var a = JsonSerializer.Deserialize<GetDestinyProfileRespons>(await responceSecond.Content.ReadAsStringAsync());
 
-Console.WriteLine(a);
+foreach(var (characterId, characterInfo) in a.Response.characters.data)
+{
+    Console.WriteLine($"{characterId}:{characterInfo.genderType} {characterInfo.raceType} {characterInfo.classType}  Level: {characterInfo.light}");
+}
 int choice()
 {
     for (int i = 0; i < user.Response.SearchResults.Length; i++)
