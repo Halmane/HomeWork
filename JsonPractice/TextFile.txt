@@ -1,0 +1,36 @@
+{
+  "_\u0441hannels": [
+    {
+      "Name": "\u041C\u0443\u0437\u0442\u0432",
+      "number": 1
+    },
+    {
+      "Name": "\u041D\u0442\u0432",
+      "number": 2
+    },
+    {
+      "Name": "\u041C\u0430\u0442\u0447\u0422\u0412",
+      "number": 3
+    },
+    {
+      "Name": "\u0414\u0438\u0441\u043D\u0435\u0439",
+      "number": 4
+    },
+    {
+      "Name": "\u041F\u0435\u0440\u0432\u044B\u0439",
+      "number": 5
+    },
+    {
+      "Name": "\u0421\u0422\u0421",
+      "number": 6
+    },
+    {
+      "Name": "\u0422\u041D\u0422",
+      "number": 7
+    },
+    {
+      "Name": "Nickelodeon",
+      "number": 8
+    }
+  ]
+}
