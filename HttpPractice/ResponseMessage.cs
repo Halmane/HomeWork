@@ -2,10 +2,10 @@
 
 namespace HttpPractice;
 
-public class ResponseMessage
+public class ResponseMessage<T>
 {
     [JsonPropertyName("Response")]
-    public UserSearchResponse Response { get; set; }
+    public T Response { get; set; }
     [JsonPropertyName("ErrorCode")]
     public int ErrorCode { get; set; }
 

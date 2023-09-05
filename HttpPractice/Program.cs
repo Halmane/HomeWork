@@ -4,33 +4,39 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-HttpClient httpClient = new HttpClient();
-int page = 0;
-using HttpRequestMessage request = new HttpRequestMessage(
+var httpClient = new HttpClient();
+var bungie = "https://www.bungie.net/Platform/";
+
+var page = 0;
+using var request = new HttpRequestMessage(
     HttpMethod.Post,
-    $"https://www.bungie.net/Platform/User/Search/GlobalName/{page}/"
+    $"{bungie}User/Search/GlobalName/{page}/"
 );
-var serchUser = JsonContent.Create(new UserSearchPrefixRequest() { DisplayNamePrefix = "Fumee" });
 request.Headers.Add("X-API-Key", "bcf113bb1115487baec8fc81b76ffdfd");
-request.Content = serchUser;
-using HttpResponseMessage responce = await httpClient.SendAsync(request);
-var user = JsonSerializer.Deserialize<ResponseMessage>(await responce.Content.ReadAsStringAsync());
+request.Content = JsonContent.Create(new UserSearchPrefixRequest() { DisplayNamePrefix = "Fumee" });
+var user = JsonSerializer.Deserialize<ResponseMessage<UserSearchResponse>>(
+    await (await httpClient.SendAsync(request)).Content.ReadAsStringAsync()
+);
+
 int index = choice();
 
-int membershipType = 3;
-string destinyMembershipId = user.Response.SearchResults[index].DestinyMemberships[0].MembershipId;
+var membershipType = 3;
+var destinyMembershipId = user.Response.SearchResults[index].DestinyMemberships[0].MembershipId;
 
-using HttpRequestMessage requestSecond = new HttpRequestMessage(
+using var requestSecond = new HttpRequestMessage(
     HttpMethod.Get,
-    $"https://www.bungie.net/Platform/Destiny2/{membershipType}/Profile/{destinyMembershipId}?components=Profiles,Characters"
+    $"{bungie}Destiny2/{membershipType}/Profile/{destinyMembershipId}?components=Profiles,Characters"
 );
 requestSecond.Headers.Add("X-API-Key", "bcf113bb1115487baec8fc81b76ffdfd");
-using HttpResponseMessage responceSecond = await httpClient.SendAsync(requestSecond);
-var a = JsonSerializer.Deserialize<GetDestinyProfileRespons>(await responceSecond.Content.ReadAsStringAsync());
+var a = JsonSerializer.Deserialize<ResponseMessage<DestinyProfileResponse>>(
+    await (await httpClient.SendAsync(requestSecond)).Content.ReadAsStringAsync()
+);
 
-foreach(var (characterId, characterInfo) in a.Response.characters.data)
+foreach (var (characterId, characterInfo) in a.Response.characters.Data)
 {
-    Console.WriteLine($"{characterId}:{characterInfo.genderType} {characterInfo.raceType} {characterInfo.classType}  Level: {characterInfo.light}");
+    Console.WriteLine(
+        $"{characterId}:{characterInfo.GenderType} {characterInfo.RaceType} {characterInfo.ClassType}  Level: {characterInfo.Light}"
+    );
 }
 int choice()
 {

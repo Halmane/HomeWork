@@ -1,6 +1,9 @@
-﻿namespace HttpPractice;
+﻿using System.Text.Json.Serialization;
+
+namespace HttpPractice;
 
 public class DestinyProfileComponent
 {
-    public UserInfoCard userInfo { get; set; }
+    [JsonPropertyName("userInfo")]
+    public UserInfoCard UserInfo { get; set; }
 }

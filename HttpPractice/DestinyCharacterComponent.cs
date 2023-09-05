@@ -1,21 +1,38 @@
-﻿namespace HttpPractice
+﻿using System.Text.Json.Serialization;
+
+namespace HttpPractice
 {
     public class DestinyCharacterComponent
     {
-        public string membershipId { get; set; }
-        public int membershipType { get; set; }
-        public string characterId { get; set; }
-        public DateTime dateLastPlayed { get; set; }
-        public string minutesPlayedThisSession { get; set; }
-        public string minutesPlayedTotal { get; set; }
-        public int light { get; set; }
-        public Dictionary<uint, int> stats { get; set; }
-        public uint raceHash { get; set; }
-        public uint genderHash { get; set; }
-        public uint classHash { get; set; }
-        public RaceType raceType { get; set; }
-        public ClassType classType { get; set; }
-        public GenderType genderType { get; set; }
-        public int baseCharacterLevel { get; set; }
+        [JsonPropertyName("membershipId")]
+        public string MembershipId { get; set; }
+        [JsonPropertyName("membershipType")]
+        public int MembershipType { get; set; }
+        [JsonPropertyName("characterId")]
+        public string CharacterId { get; set; }
+        [JsonPropertyName("dateLastPlayed")]
+        public DateTime DateLastPlayed { get; set; }
+        [JsonPropertyName("minutesPlayedThisSession")]
+        public string MinutesPlayedThisSession { get; set; }
+        [JsonPropertyName("minutesPlayedTotal")]
+        public string MinutesPlayedTotal { get; set; }
+        [JsonPropertyName("light")]
+        public int Light { get; set; }
+        [JsonPropertyName("stats")]
+        public Dictionary<uint, int> Stats { get; set; }
+        [JsonPropertyName("raceHash")]
+        public uint RaceHash { get; set; }
+        [JsonPropertyName("genderHash")]
+        public uint GenderHash { get; set; }
+        [JsonPropertyName("classHash")]
+        public uint ClassHash { get; set; }
+        [JsonPropertyName("raceType")]
+        public RaceType RaceType { get; set; }
+        [JsonPropertyName("classType")]
+        public ClassType ClassType { get; set; }
+        [JsonPropertyName("genderType")]
+        public GenderType GenderType { get; set; }
+        [JsonPropertyName("baseCharacterLevel")]
+        public int BaseCharacterLevel { get; set; }
     }
 }

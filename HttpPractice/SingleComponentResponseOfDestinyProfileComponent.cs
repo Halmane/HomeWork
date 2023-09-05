@@ -1,8 +1,13 @@
-﻿namespace HttpPractice;
+﻿using System.Text.Json.Serialization;
+
+namespace HttpPractice;
 
 public class SingleComponentResponseOfDestinyProfileComponent
 {
-    public DestinyProfileComponent data { get; set; }
-    public int privacy { get; set; }
-    public bool disabled { get; set; }
+    [JsonPropertyName("data")]
+    public DestinyProfileComponent Data { get; set; }
+    [JsonPropertyName("privacy")]
+    public int Privacy { get; set; }
+    [JsonPropertyName("disabled")]
+    public bool Disabled { get; set; }
 }
