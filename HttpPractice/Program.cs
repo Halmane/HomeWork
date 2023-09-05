@@ -26,7 +26,7 @@ using HttpRequestMessage requestSecond = new HttpRequestMessage(
 );
 requestSecond.Headers.Add("X-API-Key", "bcf113bb1115487baec8fc81b76ffdfd");
 using HttpResponseMessage responceSecond = await httpClient.SendAsync(requestSecond);
-var a = JsonSerializer.Deserialize<DestinyUserResponse>(await responceSecond.Content.ReadAsStringAsync());
+var a = await responceSecond.Content.ReadAsStringAsync();
 
 Console.WriteLine(a);
 int choice()
