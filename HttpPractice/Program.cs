@@ -6,21 +6,21 @@ using System.Reflection.Metadata;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-var httpClient = new HttpClient();
-var bungie = "https://www.bungie.net/Platform/";
+
+var request = new HttpRequest();
 
 var page = 0;
-var response = await Request<ResponseMessage<UserSearchResponse>>(
+var response = await request.Request<ResponseMessage<UserSearchResponse>>(
     HttpMethod.Post,
     $"User/Search/GlobalName/{page}",
     JsonContent.Create(new UserSearchPrefixRequest() { DisplayNamePrefix = "Fumee" })
 );
 
 var membershipType = 3;
-var index = choice();
+var index = ChooseAccount(response);
 var destinyMembershipId = response.Response.SearchResults[index].DestinyMemberships[0].MembershipId;
 
-var profile = Request<ResponseMessage<DestinyProfileResponse>>(
+var profile = request.Request<ResponseMessage<DestinyProfileResponse>>(
     HttpMethod.Get,
     $"Destiny2/{membershipType}/Profile/{destinyMembershipId}?components=Profiles,Characters"
 );
@@ -43,7 +43,7 @@ var listOfPlayers = new List<(string membershipType, string destinyMembershipId)
 
 foreach (var player in listOfPlayers)
 {
-    var playerProfile = Request<ResponseMessage<DestinyProfileResponse>>(
+    var playerProfile = request.Request<ResponseMessage<DestinyProfileResponse>>(
         HttpMethod.Get,
         $"Destiny2/{player.membershipType}/Profile/{player.destinyMembershipId}?components=Profiles,Characters"
     );
@@ -56,29 +56,11 @@ foreach (var player in listOfPlayers)
     }
 }
 
-async Task<T> Request<T>(HttpMethod requestType, string path, JsonContent content = null)
+int ChooseAccount(ResponseMessage<UserSearchResponse> message)
 {
-    HttpRequestMessage request;
-    if (requestType == HttpMethod.Post)
+    for (int i = 0; i < message.Response.SearchResults.Length; i++)
     {
-        request = new HttpRequestMessage(HttpMethod.Post, $"{bungie}{path}");
-        request.Content = content;
-    }
-    else
-    {
-        request = new HttpRequestMessage(HttpMethod.Get, $"{bungie}{path}");
-    }
-    request.Headers.Add("X-API-Key", "bcf113bb1115487baec8fc81b76ffdfd");
-
-    var result = (await httpClient.SendAsync(request)).Content.ReadAsStringAsync();
-    return JsonSerializer.Deserialize<T>(await result);
-}
-
-int choice()
-{
-    for (int i = 0; i < response.Response.SearchResults.Length; i++)
-    {
-        Console.WriteLine($"{i + 1} {response.Response.SearchResults[i].DungieGlobalDisplayName}");
+        Console.WriteLine($"{i + 1} {message.Response.SearchResults[i].DungieGlobalDisplayName}");
     }
     int number = -1;
     var stringNumber = String.Empty;
@@ -89,7 +71,7 @@ int choice()
         stringNumber = Console.ReadLine();
     } while (
         int.TryParse(stringNumber, out number)
-        && (number <= 0 || number > response.Response.SearchResults.Length)
+        && (number <= 0 || number > message.Response.SearchResults.Length)
     );
     return number - 1;
 }
