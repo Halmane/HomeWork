@@ -11,7 +11,7 @@ var bungie = "https://www.bungie.net/Platform/";
 
 var page = 0;
 var response = await Request<ResponseMessage<UserSearchResponse>>(
-    "Post",
+    HttpMethod.Post,
     $"User/Search/GlobalName/{page}",
     JsonContent.Create(new UserSearchPrefixRequest() { DisplayNamePrefix = "Fumee" })
 );
@@ -21,9 +21,8 @@ var index = choice();
 var destinyMembershipId = response.Response.SearchResults[index].DestinyMemberships[0].MembershipId;
 
 var profile = Request<ResponseMessage<DestinyProfileResponse>>(
-    "Get",
-    $"Destiny2/{membershipType}/Profile/{destinyMembershipId}?components=Profiles,Characters",
-    JsonContent.Create(string.Empty)
+    HttpMethod.Get,
+    $"Destiny2/{membershipType}/Profile/{destinyMembershipId}?components=Profiles,Characters"
 );
 
 foreach (var (characterId, characterInfo) in profile.Result.Response.characters.Data)
@@ -35,19 +34,18 @@ foreach (var (characterId, characterInfo) in profile.Result.Response.characters.
 
 var listOfPlayers = new List<(string membershipType, string destinyMembershipId)>
 {
-    ( "3", "4611686018514469726" ),
-    ( "3", "4611686018519131912" ),
-    ( "3", "4611686018507520201" ),
-    ( "3", "4611686018499749567" ),
-    ( "3", "4611686018483245155" )
+    ("3", "4611686018514469726"),
+    ("3", "4611686018519131912"),
+    ("3", "4611686018507520201"),
+    ("3", "4611686018499749567"),
+    ("3", "4611686018483245155")
 };
 
 foreach (var player in listOfPlayers)
 {
     var playerProfile = Request<ResponseMessage<DestinyProfileResponse>>(
-        "Get",
-        $"Destiny2/{player.membershipType}/Profile/{player.destinyMembershipId}?components=Profiles,Characters",
-        JsonContent.Create(string.Empty)
+        HttpMethod.Get,
+        $"Destiny2/{player.membershipType}/Profile/{player.destinyMembershipId}?components=Profiles,Characters"
     );
     Console.WriteLine();
     foreach (var (characterId, characterInfo) in playerProfile.Result.Response.characters.Data)
@@ -58,10 +56,10 @@ foreach (var player in listOfPlayers)
     }
 }
 
-async Task<T> Request<T>(string requestType, string path, JsonContent content)
+async Task<T> Request<T>(HttpMethod requestType, string path, JsonContent content = null)
 {
     HttpRequestMessage request;
-    if (requestType == "Post")
+    if (requestType == HttpMethod.Post)
     {
         request = new HttpRequestMessage(HttpMethod.Post, $"{bungie}{path}");
         request.Content = content;
