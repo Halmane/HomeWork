@@ -29,9 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game", "..\Game\Game.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasks", "..\Tasks\Tasks.csproj", "{9FE745E4-7413-4396-9E78-87E1EAFBAE47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonPractice", "..\JsonPractice\JsonPractice.csproj", "{D428C56F-2CE4-4C4F-BE6D-8AA675556CA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonPractice", "..\JsonPractice\JsonPractice.csproj", "{D428C56F-2CE4-4C4F-BE6D-8AA675556CA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpPractice", "..\HttpPractice\HttpPractice.csproj", "{D1093103-B1BE-46D5-BB71-62261D8CD377}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpPractice", "..\HttpPractice\HttpPractice.csproj", "{D1093103-B1BE-46D5-BB71-62261D8CD377}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "notebook", "..\notebook\notebook.csproj", "{B877C41F-6303-440F-B689-FEC790F060F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{D1093103-B1BE-46D5-BB71-62261D8CD377}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1093103-B1BE-46D5-BB71-62261D8CD377}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1093103-B1BE-46D5-BB71-62261D8CD377}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B877C41F-6303-440F-B689-FEC790F060F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B877C41F-6303-440F-B689-FEC790F060F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B877C41F-6303-440F-B689-FEC790F060F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B877C41F-6303-440F-B689-FEC790F060F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
