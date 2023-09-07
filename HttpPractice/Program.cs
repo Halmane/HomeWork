@@ -9,6 +9,9 @@ using System.Text.Json.Serialization;
 
 var request = new HttpRequest();
 
+
+
+
 var page = 0;
 var response = await request.Request<ResponseMessage<UserSearchResponse>>(
     HttpMethod.Post,
@@ -32,13 +35,13 @@ foreach (var (characterId, characterInfo) in profile.Result.Response.characters.
     );
 }
 
-var listOfPlayers = new List<(string membershipType, string destinyMembershipId)>
+var listOfPlayers = new List<(int membershipType, long destinyMembershipId)>
 {
-    ("3", "4611686018514469726"),
-    ("3", "4611686018519131912"),
-    ("3", "4611686018507520201"),
-    ("3", "4611686018499749567"),
-    ("3", "4611686018483245155")
+    (3, 4611686018514469726),
+    (3, 4611686018519131912),
+    (3, 4611686018507520201),
+    (3, 4611686018499749567),
+    (3, 4611686018483245155)
 };
 
 foreach (var player in listOfPlayers)
