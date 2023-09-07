@@ -15,7 +15,8 @@ public class HttpRequest
             request.Content = content;
 
         request.Headers.Add("X-API-Key", "bcf113bb1115487baec8fc81b76ffdfd");
-        var result = (await httpClient.SendAsync(request)).Content.ReadAsStringAsync();
-        return JsonSerializer.Deserialize<T>(await result,option);
+        var sentRequest = await httpClient.SendAsync(request);
+        var result = await sentRequest.Content.ReadAsStreamAsync();
+        return await JsonSerializer.DeserializeAsync<T>(result,option);
     }
 }
