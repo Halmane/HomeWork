@@ -6,7 +6,7 @@ namespace HttpPractice;
 public class HttpRequest
 {
     JsonSerializerOptions option = new JsonSerializerOptions()
-    { NumberHandling = (JsonNumberHandling)1 };
+    { NumberHandling = JsonNumberHandling.AllowReadingFromString };
     public static HttpClient httpClient = new HttpClient();
     public async Task<T> Request<T>(HttpMethod requestType, string path, JsonContent content = null, string link = "https://www.bungie.net/Platform/")
     {
