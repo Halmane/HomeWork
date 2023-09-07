@@ -69,7 +69,7 @@ public class ChannelJsonConverter : JsonConverter<Channel>
 
 public class Channel
 {
-    public string Name { get; set; }
+    public string Name { get; set; } 
     public string Info { get; set; }
     public int ChannelNumber { get; set; }
 }
