@@ -1,13 +1,26 @@
-﻿await foreach(int i in AsyncInt())
-{
-    Console.WriteLine(i);
-}
+﻿var cancellationTokenSoource = new CancellationTokenSource(); ;
+var token = cancellationTokenSoource.Token;
+var first = SlowPrint(token);
+var second = SlowPrint(token);
+var result = await (await Task.WhenAny(first, second));
+Console.WriteLine(result);
+cancellationTokenSoource.Cancel();
+await Task.Delay(Timeout.Infinite);
 
-async IAsyncEnumerable<int> AsyncInt()
+
+
+
+
+
+
+async Task<String> SlowPrint(CancellationToken cancellationToken)
 {
-    for(int i = 0; i < 10; i++)
+    await Task.Delay(Random.Shared.Next(1000,3000));
+    if (cancellationToken.IsCancellationRequested)
     {
-        await Task.Delay(1000);
-        yield return i;
-    }
+        Console.WriteLine("Lupa");
+        return string.Empty;
+    }  
+    else
+        return "Pupa";
 }

@@ -1,4 +1,5 @@
 using System.Windows.Forms;
+using static System.Windows.Forms.LinkLabel;
 
 namespace Notebook;
 
@@ -17,7 +18,6 @@ public partial class Form1 : Form
         File.WriteAllText(fileName, textBox1.Text);
     }
 
-
     private void Load_click(object sender, EventArgs e)
     {
         if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
@@ -27,4 +27,12 @@ public partial class Form1 : Form
         textBox1.Text = fileText;
     }
 
+    private void textBox2_TextChanged(object sender, EventArgs e) { }
+
+    private void FindButton_Click(object sender, EventArgs e)
+    {
+        int pos = textBox1.Text.IndexOf(textBox2.Text);
+        textBox1.Select(pos, pos + textBox2.Text.Length);
+        textBox1.Focus();
+    }
 }
