@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using static System.Windows.Forms.LinkLabel;
 
@@ -12,27 +13,33 @@ public partial class Form1 : Form
 
     private void Save_click(object sender, EventArgs e)
     {
-        if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
+        if (SaveTxt.ShowDialog() == DialogResult.Cancel)
             return;
-        string fileName = saveFileDialog1.FileName;
-        File.WriteAllText(fileName, textBox1.Text);
+        string fileName = SaveTxt.FileName;
+        File.WriteAllText(fileName, TxtFile.Text);
     }
 
     private void Load_click(object sender, EventArgs e)
     {
-        if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
+        if (OpenTxt.ShowDialog() == DialogResult.Cancel)
             return;
-        string filename = openFileDialog1.FileName;
+        string filename = OpenTxt.FileName;
         string fileText = File.ReadAllText(filename);
-        textBox1.Text = fileText;
+        TxtFile.Text = fileText;
     }
 
-    private void textBox2_TextChanged(object sender, EventArgs e) { }
-
-    private void FindButton_Click(object sender, EventArgs e)
+    private void Find(object sender, EventArgs e)
     {
-        int pos = textBox1.Text.IndexOf(textBox2.Text);
-        textBox1.Select(pos, pos + textBox2.Text.Length);
-        textBox1.Focus();
+        if (FindTxt.TextLength == 0)
+            return;
+        Regex regex = new Regex(FindTxt.Text);
+        MatchCollection matches = regex.Matches(TxtFile.Text);
+        TxtFile.SelectAll();
+        TxtFile.SelectionBackColor = TxtFile.BackColor;
+        foreach (Match match in matches)
+        {
+            TxtFile.Select(match.Index, match.Length);
+            TxtFile.SelectionBackColor = Color.Yellow;
+        }
     }
 }

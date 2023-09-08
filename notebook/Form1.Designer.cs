@@ -30,11 +30,10 @@
         {
             SaveButton = new Button();
             LoadButton = new Button();
-            FindButton = new Button();
-            textBox1 = new TextBox();
-            saveFileDialog1 = new SaveFileDialog();
-            openFileDialog1 = new OpenFileDialog();
-            textBox2 = new TextBox();
+            SaveTxt = new SaveFileDialog();
+            OpenTxt = new OpenFileDialog();
+            TxtFile = new RichTextBox();
+            FindTxt = new RichTextBox();
             SuspendLayout();
             // 
             // SaveButton
@@ -57,60 +56,48 @@
             LoadButton.UseVisualStyleBackColor = true;
             LoadButton.Click += Load_click;
             // 
-            // FindButton
+            // OpenTxt
             // 
-            FindButton.Location = new Point(455, 2);
-            FindButton.Name = "FindButton";
-            FindButton.Size = new Size(54, 21);
-            FindButton.TabIndex = 2;
-            FindButton.Text = "Find";
-            FindButton.UseVisualStyleBackColor = true;
-            FindButton.Click += FindButton_Click;
+            OpenTxt.FileName = "OpenTxt";
             // 
-            // textBox1
+            // TxtFile
             // 
-            textBox1.Location = new Point(3, 24);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(793, 420);
-            textBox1.TabIndex = 3;
+            TxtFile.Location = new Point(3, 29);
+            TxtFile.Name = "TxtFile";
+            TxtFile.Size = new Size(792, 420);
+            TxtFile.TabIndex = 5;
+            TxtFile.Text = "";
             // 
-            // openFileDialog1
+            // FindTxt
             // 
-            openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(123, 0);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(331, 23);
-            textBox2.TabIndex = 4;
-            textBox2.TextChanged += textBox2_TextChanged;
+            FindTxt.Location = new Point(123, 2);
+            FindTxt.Name = "FindTxt";
+            FindTxt.Size = new Size(278, 21);
+            FindTxt.TabIndex = 6;
+            FindTxt.Text = "";
+            FindTxt.TextChanged += Find;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(FindButton);
+            Controls.Add(FindTxt);
+            Controls.Add(TxtFile);
             Controls.Add(LoadButton);
             Controls.Add(SaveButton);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
         private Button SaveButton;
         private Button LoadButton;
-        private Button FindButton;
-        private TextBox textBox1;
-        private SaveFileDialog saveFileDialog1;
-        private OpenFileDialog openFileDialog1;
-        private TextBox textBox2;
+        private SaveFileDialog SaveTxt;
+        private OpenFileDialog OpenTxt;
+        private RichTextBox TxtFile;
+        private RichTextBox FindTxt;
     }
 }
